@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".Home_Register">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/HomeRegister"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:text="Register New User"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+
+        />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/RegisterUsername"
+        android:hint="Username"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/HomeRegister"
+        android:inputType="textPersonName"
+        />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/RegisterPassword"
+        android:hint="Password"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/RegisterUsername"
+        android:inputType="textPassword"
+        />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/RegisterBox"
+        android:hint="Box ID"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/RegisterPassword"
+        android:inputType="text"
+        />
+
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/BtnRegister"
+        android:layout_below="@id/RegisterBox"
+        android:layout_centerHorizontal="true"
+        android:text="Register"
+        />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/BackBtnRegister"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/BtnRegister"
+        android:text="Back"
+        />
+
+
+
+</RelativeLayout>

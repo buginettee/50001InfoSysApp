@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/delivery_history">
+
+    <TextView
+        android:id="@+id/text_Delivery_History"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp"
+        android:textAlignment="center"
+        android:textSize="20dp"
+        android:text="@string/delivery_history_title"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/retrieve_delivery_history"
+        android:background="@color/colorPrimary"
+        android:layout_marginLeft="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="80dp"
+        android:text="yesyes"
+        />
+
+
+
+</RelativeLayout>

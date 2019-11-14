@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/delivery_navigation_history"
+        android:icon="@drawable/ic_both_history"
+        android:title="@string/delivery_navigation_history" />
+
+    <item
+        android:id="@+id/delivery_navigation_home"
+        android:icon="@drawable/ic_home_login"
+        android:title="@string/delivery_navigation_home" />
+
+    <item
+        android:id="@+id/delivery_navigation_settings"
+        android:icon="@drawable/ic_both_settings"
+        android:title="@string/delivery_navigation_settings" />
+
+</menu>

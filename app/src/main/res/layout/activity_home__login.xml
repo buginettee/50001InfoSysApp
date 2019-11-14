@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".Home_Login">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/HomeLogin"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:text="Home Login"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+
+        />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/HomeUsername"
+        android:hint="Username"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/HomeLogin"
+        android:inputType="textPersonName"
+        />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/HomePassword"
+        android:hint="Password"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/HomeUsername"
+        android:inputType="textPassword"
+        />
+
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/BtnHomeLogin"
+        android:layout_below="@id/HomePassword"
+        android:layout_centerHorizontal="true"
+        android:text="Login"
+        />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/BtnHomeRegister"
+        android:layout_below="@id/BtnHomeLogin"
+        android:layout_centerHorizontal="true"
+        android:text="Register"
+        />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/BackBtnHome"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/BtnHomeRegister"
+        android:text="Back"
+        />
+
+
+
+</RelativeLayout>
