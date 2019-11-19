@@ -49,13 +49,15 @@ public class Home_Login extends AppCompatActivity implements View.OnClickListene
             case R.id.BtnHomeLogin:
                 loginHome();
 
-            case R.id.BackBtnHome:
-                Intent backtoLoginMain = new Intent(Home_Login.this, Login_Main.class);
-                startActivity(backtoLoginMain);
-
             case R.id.BtnHomeRegister:
                 Intent registerHomeUser = new Intent(Home_Login.this, Home_Register.class);
                 startActivity(registerHomeUser);
+
+            case R.id.BackBtnHome:
+                Intent backtoLoginMainUser = new Intent(Home_Login.this, Login_Main.class);
+                startActivity(backtoLoginMainUser);
+
+
         }
     }
 
@@ -70,7 +72,8 @@ public class Home_Login extends AppCompatActivity implements View.OnClickListene
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()){
                         Toast.makeText(Home_Login.this, "Login Successful", Toast.LENGTH_SHORT).show();
-                        Intent HomeLoginIntent = new Intent(Home_Login.this, Login_Main.class);
+
+                        Intent HomeLoginIntent = new Intent(Home_Login.this, backend_User_Home.class);
                         startActivity(HomeLoginIntent);
                     }
                     else {

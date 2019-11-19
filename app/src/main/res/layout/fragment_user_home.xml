@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/delivery_home">
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/text_check_box_access"
+        android:text="@string/retrieve_box_admin"
+        android:layout_marginTop="25dp"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:layout_centerHorizontal="true"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/display_boxes_access"
+        android:text="CHANGE TEXT TO RETRIEVE THE BOXES THAT THIS USER HAS ACCESS TO FROM THE DATABASE"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/text_check_box_access"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/colorPrimary"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/display_boxes_access_2"
+        android:text="EACH DISPLAYED BOX SHOULD HAVE THEIR OWN LINE AND THE STATUS?"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/display_boxes_access"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/colorPrimary"
+        />
+
+    <ImageButton
+        android:layout_width="100dp"
+        android:layout_height="140dp"
+        android:id="@+id/force_lock"
+        android:scaleType="fitXY"
+        app:srcCompat="@drawable/ic_password"
+        android:background="@android:color/transparent"
+        android:layout_marginLeft="70dp"
+        android:layout_marginStart="70dp"
+        android:layout_marginTop="400dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/text_force_lock"
+        android:text="@string/text_force_lock"
+        android:layout_below="@id/force_lock"
+        android:layout_marginLeft="85dp"
+        android:layout_marginStart="85dp"
+        android:layout_marginTop="10dp"
+        />
+
+    <ImageButton
+        android:layout_width="80dp"
+        android:layout_height="140dp"
+        android:id="@+id/temp_unlock"
+        app:srcCompat="@drawable/ic_home_unlock"
+        android:scaleType="fitXY"
+        android:background="@android:color/transparent"
+        android:layout_marginTop="400dp"
+        android:layout_marginRight="85dp"
+        android:layout_marginEnd="85dp"
+        android:layout_toRightOf="@+id/force_lock"
+        android:layout_marginLeft="80dp"
+        android:layout_marginStart="80dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/text_temp_unlock"
+        android:text="@string/text_temp_unlock"
+        android:layout_below="@id/temp_unlock"
+        android:layout_alignLeft="@+id/temp_unlock"
+        android:layout_marginLeft="-20dp"
+        android:layout_marginStart="-20dp"
+        android:layout_marginTop="10dp"
+        />
+    
+
+</RelativeLayout>

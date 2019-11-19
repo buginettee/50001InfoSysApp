@@ -37,22 +37,11 @@
         android:inputType="textPassword"
         />
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/RegisterBox"
-        android:hint="Box ID"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/RegisterPassword"
-        android:inputType="text"
-        />
-
-
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/BtnRegister"
-        android:layout_below="@id/RegisterBox"
+        android:layout_below="@id/RegisterPassword"
         android:layout_centerHorizontal="true"
         android:text="Register"
         />
