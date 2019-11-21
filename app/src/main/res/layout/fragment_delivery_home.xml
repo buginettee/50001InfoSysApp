@@ -7,9 +7,9 @@
 
 
     <TextView
+        android:id="@+id/text_Pending_Delivery"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/text_Pending_Delivery"
         android:text="@string/pending_delivery"
         android:layout_marginTop="25dp"
         android:textAlignment="center"
@@ -20,17 +20,17 @@
 
 
     <Button
+        android:id="@+id/delivery1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/delivery1"
         android:background="@color/colorPrimary"
         android:layout_marginLeft="20dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="80dp"
         android:layout_marginRight="20dp"
         android:layout_marginEnd="20dp"
-        android:text="yesyesclickme this is your first delivery need to figure how to automatically change value of this"
         />
+
 
 
 

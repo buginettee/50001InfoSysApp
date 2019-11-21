@@ -23,6 +23,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import org.w3c.dom.Text;
+
+import java.util.HashMap;
+import java.util.HashSet;
+
 public class DeliverySettingsFragment extends Fragment {
 
     private DatabaseReference dbreference;
@@ -32,25 +37,24 @@ public class DeliverySettingsFragment extends Fragment {
     private Button log_out_button;
     private EditText namechange;
     private Button save_all_settings;
-    private String currentuserUID;
+    private TextView delivery_email;
 
     //delivery person details should already be in the database
     //settings to retrieve name, delivery id, company name
 
 
-    public void onCreate(Bundle savedInstanceState){ //initialising things. methods should be in onCreateView
+    public void onCreate(Bundle savedInstanceState) { //initialising things. methods should be in onCreateView
         super.onCreate(savedInstanceState);
-        Log.i("Settings Page Access", "Settings Page Accessed");
-
 
         //get user authentication data
         dbauth = FirebaseAuth.getInstance();
+
         FirebaseUser currentuser = dbauth.getCurrentUser();
-        currentuserUID = currentuser.getUid();
+        String currentUID = currentuser.getUid();
+
 
         //get instance of firebase access to the specific account details
-        dbreference = FirebaseDatabase.getInstance().getReference().child("Profiles").child(currentuserUID);
-
+        dbreference = FirebaseDatabase.getInstance().getReference().child("Profiles").child(currentUID);
     }
 
 
@@ -65,18 +69,8 @@ public class DeliverySettingsFragment extends Fragment {
         company_name = (TextView) view.findViewById(R.id.delivery_company_display);
 
         namechange = (EditText) view.findViewById(R.id.delivery_edit_name);
-        namechange.setHint("");
 
-
-
-        final FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference ref = database.getReference();
-
-        DatabaseReference delivery_profiles = ref.child("Profiles");
-
-        delivery_profiles.child(currentuserUID).setValue(new Class_Profile("name", "address", "extrainfo","duid", "company"));
-
-
+        delivery_email = (TextView) view.findViewById(R.id.delivery_email_display);
 
 
         //retrieving and displaying data from the database
@@ -89,16 +83,18 @@ public class DeliverySettingsFragment extends Fragment {
                 delivery_id.setText("");
                 company_name.setText("");
                 namechange.setText("");
+                delivery_email.setText("");
 
-                //to retrieve, please look at the database for the specific child name
-                delivery_id.append(dataSnapshot.child("deliveryID").getValue().toString());
-                company_name.append(dataSnapshot.child("company_Name").getValue().toString());
+                delivery_id.append(dataSnapshot.child("DUID").getValue().toString());
+                company_name.append(dataSnapshot.child("Company").getValue().toString());
                 namechange.append(dataSnapshot.child("displayName").getValue().toString());
+                delivery_email.append(dataSnapshot.child("Email").getValue().toString());
+
+
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
-                Log.i("Fetch Profile Failure", "Fetching Delivery Profile Failure");
             }
         });
 
@@ -110,7 +106,6 @@ public class DeliverySettingsFragment extends Fragment {
 
                 Toast.makeText(getContext(), "You have logged out", Toast.LENGTH_SHORT).show();
 
-                Log.i("Logout", "Successful logout");
                 Intent logouttomain = new Intent(getActivity(), Login_Main.class);
                 startActivity(logouttomain);
             }
@@ -123,7 +118,7 @@ public class DeliverySettingsFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                dbreference.child("name").setValue(namechange.getText().toString());
+                dbreference.child("displayName").setValue(namechange.getText().toString());
 
                 Toast.makeText(getContext(), "You have successfully updated your name", Toast.LENGTH_SHORT).show();
 
@@ -136,6 +131,7 @@ public class DeliverySettingsFragment extends Fragment {
 
 //DONE
 //EVERYTHING WORKS
+//LAYOUT DONE
 
 
 //TODO LOG EVERYTHING

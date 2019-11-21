@@ -17,9 +17,9 @@
         />
 
     <TextView
+        android:id="@+id/settings_name_display_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/settings_name_display_text"
         android:layout_marginLeft="20dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
@@ -30,9 +30,9 @@
         />
 
     <Button
+        android:id="@+id/delivery_logout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/delivery_logout"
         android:text="@string/logout_text"
         android:layout_alignRight="@+id/text_Delivery_Settings"
         android:layout_marginTop="15dp"
@@ -41,9 +41,9 @@
         />
 
     <EditText
+        android:id="@+id/delivery_edit_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/delivery_edit_name"
         android:layout_marginLeft="20dp"
         android:layout_marginStart="20dp"
         android:inputType="textPersonName"
@@ -53,33 +53,56 @@
         />
 
     <TextView
+        android:id="@+id/delivery_email_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/delivery_id_text"
         android:layout_marginLeft="20dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginEnd="20dp"
         android:layout_below="@+id/delivery_edit_name"
+        android:text="Email:"
+        />
+
+    <TextView
+        android:id="@+id/delivery_email_display"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_below="@id/delivery_email_text"
+        />
+
+    <TextView
+        android:id="@+id/delivery_id_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_below="@+id/delivery_email_display"
         android:text="@string/delivery_id"
         />
 
     <TextView
+        android:id="@+id/delivery_id_display"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/delivery_id_display"
         android:layout_marginLeft="20dp"
         android:layout_marginStart="20dp"
         android:layout_below="@id/delivery_id_text"
-        android:text="text"
         android:textAppearance="@style/TextAppearance.AppCompat"
         />
 
     <TextView
+        android:id="@+id/delivery_company_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/delivery_company_text"
         android:layout_marginLeft="20dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
@@ -90,13 +113,12 @@
         />
 
     <TextView
+        android:id="@+id/delivery_company_display"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/delivery_company_display"
         android:layout_marginLeft="20dp"
         android:layout_marginStart="20dp"
         android:layout_below="@id/delivery_company_text"
-        android:text="text"
         android:textAppearance="@style/TextAppearance.AppCompat"
         />
 
@@ -108,10 +130,5 @@
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/delivery_company_display"
         />
-
-
-
-
-
 
 </RelativeLayout>
