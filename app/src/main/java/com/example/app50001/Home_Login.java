@@ -15,7 +15,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class Home_Login extends AppCompatActivity implements View.OnClickListener {
+public class Home_Login extends AppCompatActivity {
 
     private Button BtnHomeLogin;
     private Button BtnHomeRegister;
@@ -36,29 +36,37 @@ public class Home_Login extends AppCompatActivity implements View.OnClickListene
         HomeUsername = findViewById(R.id.HomeUsername);
         HomePassword = findViewById(R.id.HomePassword);
 
-        BtnHomeLogin.setOnClickListener(Home_Login.this);
-        BtnHomeRegister.setOnClickListener(Home_Login.this);
-        BackBtnHome.setOnClickListener(Home_Login.this);
+
+
+        BtnHomeLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loginHome();
+            }
+        });
+
+        BtnHomeRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent registerUser = new Intent(Home_Login.this, Home_Register.class);
+                Toast.makeText(Home_Login.this, "Entering Register", Toast.LENGTH_SHORT).show();
+                startActivity(registerUser);
+            }
+        });
+
+        BackBtnHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent backtoLoginMainUser = new Intent(Home_Login.this, Login_Main.class);
+                startActivity(backtoLoginMainUser);
+            }
+        });
+
+
 
 
         UserFBAuth = FirebaseAuth.getInstance();
-    }
-
-    public void onClick(View view){
-        switch (view.getId()){
-            case R.id.BtnHomeLogin:
-                loginHome();
-
-            case R.id.BtnHomeRegister:
-                Intent registerHomeUser = new Intent(Home_Login.this, Home_Register.class);
-                startActivity(registerHomeUser);
-
-            case R.id.BackBtnHome:
-                Intent backtoLoginMainUser = new Intent(Home_Login.this, Login_Main.class);
-                startActivity(backtoLoginMainUser);
-
-
-        }
     }
 
     private void loginHome() {
@@ -86,3 +94,5 @@ public class Home_Login extends AppCompatActivity implements View.OnClickListene
         }
     }
 }
+
+//PAGE DONE

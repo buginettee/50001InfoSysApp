@@ -37,11 +37,21 @@
         android:inputType="textPassword"
         />
 
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/RegisterDisplayName"
+        android:hint="Display Name"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/RegisterPassword"
+        android:inputType="textPersonName"
+        />
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/BtnRegister"
-        android:layout_below="@id/RegisterPassword"
+        android:layout_below="@id/RegisterDisplayName"
         android:layout_centerHorizontal="true"
         android:text="Register"
         />

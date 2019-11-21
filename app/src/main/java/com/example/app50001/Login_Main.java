@@ -4,15 +4,15 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 public class Login_Main extends AppCompatActivity implements View.OnClickListener {
 
-    private Button UserLoginButton;
-    private Button DeliveryLoginButton;
+    private ImageButton HomeChoice;
+    private ImageButton DeliveryChoice;
 
 
     @Override
@@ -21,25 +21,25 @@ public class Login_Main extends AppCompatActivity implements View.OnClickListene
         setContentView(R.layout.acitvity_login_main);
 
         //instantiate everything
-        UserLoginButton = findViewById(R.id.UserLoginButton);
-        DeliveryLoginButton = findViewById(R.id.DeliveryLoginButton);
+        HomeChoice = findViewById(R.id.HomeChoice);
+        DeliveryChoice = findViewById(R.id.DeliveryChoice);
 
         //set their activities
-        UserLoginButton.setOnClickListener(Login_Main.this);
-        DeliveryLoginButton.setOnClickListener(Login_Main.this);
+        HomeChoice.setOnClickListener(Login_Main.this);
+        DeliveryChoice.setOnClickListener(Login_Main.this);
     }
 
     @Override
     public void onClick(View view){
         switch (view.getId()){
-            case R.id.UserLoginButton:
+            case R.id.HomeChoice:
                 Toast.makeText(Login_Main.this, "Entering User Login", Toast.LENGTH_SHORT).show();
                 Intent intentUserLogin = new Intent(Login_Main.this, Home_Login.class);
                 startActivity(intentUserLogin);
                 break;
 
 
-            case R.id.DeliveryLoginButton:
+            case R.id.DeliveryChoice:
                 Toast.makeText(Login_Main.this, "Entering Delivery Login", Toast.LENGTH_SHORT).show();
                 Intent intentDeliveryLogin = new Intent(Login_Main.this, Delivery_Login.class);
                 startActivity(intentDeliveryLogin);
@@ -47,7 +47,6 @@ public class Login_Main extends AppCompatActivity implements View.OnClickListene
         }
     }
 }
-
-
-//TODO AESTHETICS ADDITION
-//Functions have been linked accordingly
+//ALL FUNCTIONS AND AESTHETICS COMPLETED
+//TODO MAKE LOGS
+//TODO FIX THE IMAGE BUTTON ALIGNMENT IN LAYOUT

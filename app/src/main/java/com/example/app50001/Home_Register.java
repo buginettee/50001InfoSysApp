@@ -24,8 +24,10 @@ public class Home_Register extends AppCompatActivity implements View.OnClickList
     private Button BackBtnRegister;
     private EditText RegisterUsername;
     private EditText RegisterPassword;
+    private EditText RegisterDisplayName;
 
     private FirebaseAuth mAuth;
+    private FirebaseUser mUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,10 +39,12 @@ public class Home_Register extends AppCompatActivity implements View.OnClickList
         BackBtnRegister = findViewById(R.id.BackBtnRegister);
         RegisterUsername = findViewById(R.id.RegisterUsername);
         RegisterPassword = findViewById(R.id.RegisterPassword);
+        RegisterDisplayName = findViewById(R.id.RegisterDisplayName);
 
         mAuth = FirebaseAuth.getInstance();
 
         BtnRegister.setOnClickListener(Home_Register.this);
+        BackBtnRegister.setOnClickListener(Home_Register.this);
     }
 
     public void onClick(View view){
@@ -59,6 +63,7 @@ public class Home_Register extends AppCompatActivity implements View.OnClickList
     private void registerNewUser(){
         String registerUsername = RegisterUsername.getText().toString();
         String registerPassword = RegisterPassword.getText().toString();
+        String registerDisplayName = RegisterDisplayName.getText().toString();
 
         if(!registerUsername.isEmpty() && !registerPassword.isEmpty()){
             mAuth.createUserWithEmailAndPassword(registerUsername, registerPassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -67,6 +72,10 @@ public class Home_Register extends AppCompatActivity implements View.OnClickList
                     if(task.isSuccessful()){
                         Log.d("User Registration", "Created New User Successfully");
                         Toast.makeText(Home_Register.this, "Registration successful!", Toast.LENGTH_SHORT).show();
+
+
+
+
                         //if created, go to login page again
                         Intent gotoHomeLogin = new Intent(Home_Register.this, Home_Login.class);
                         startActivity(gotoHomeLogin);

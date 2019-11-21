@@ -69,8 +69,6 @@ public class Delivery_Login extends AppCompatActivity implements View.OnClickLis
                         Log.d("Delivery Login", "Delivery Login Successful");
 
 
-
-
                         Intent DeliveryLoginIntent = new Intent(Delivery_Login.this, backend_Delivery_Home.class);
                         startActivity(DeliveryLoginIntent);
 
@@ -91,11 +89,4 @@ public class Delivery_Login extends AppCompatActivity implements View.OnClickLis
     }
 }
 
-//TODO AESTHETICS OF THE SCREEN
-//TODO SEGMENT THE DELIVERY USERNAMES FROM THE HOME USERNAMES
-//TODO TIE UNIQUE DELIVERY PROFILE TO THEIR PROFILE INFORMATION
-//TODO AWKWARD TRANSITION PAGE DURING LOGIN (it will show the main login page before loading into the delivery home page)
-
-//Delivery will not have a registration page as they should have been pre-registered into the system already
-
-//Can login already, need to tidy the transitions up
+//TODO LOGIN LOADING PROGRESS DIALOG

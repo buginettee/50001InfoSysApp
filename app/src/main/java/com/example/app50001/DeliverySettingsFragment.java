@@ -23,8 +23,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-
-
 public class DeliverySettingsFragment extends Fragment {
 
     private DatabaseReference dbreference;
@@ -35,6 +33,9 @@ public class DeliverySettingsFragment extends Fragment {
     private EditText namechange;
     private Button save_all_settings;
     private String currentuserUID;
+
+    //delivery person details should already be in the database
+    //settings to retrieve name, delivery id, company name
 
 
     public void onCreate(Bundle savedInstanceState){ //initialising things. methods should be in onCreateView
@@ -48,7 +49,7 @@ public class DeliverySettingsFragment extends Fragment {
         currentuserUID = currentuser.getUid();
 
         //get instance of firebase access to the specific account details
-        dbreference = FirebaseDatabase.getInstance().getReference().child("Delivery Profiles").child(currentuserUID);
+        dbreference = FirebaseDatabase.getInstance().getReference().child("Profiles").child(currentuserUID);
 
     }
 
@@ -56,12 +57,29 @@ public class DeliverySettingsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
+        //inflate view of the fragment
         View view = inflater.inflate(R.layout.fragment_delivery_settings, null);
 
         delivery_id = (TextView) view.findViewById(R.id.delivery_id_display);
 
         company_name = (TextView) view.findViewById(R.id.delivery_company_display);
 
+        namechange = (EditText) view.findViewById(R.id.delivery_edit_name);
+        namechange.setHint("");
+
+
+
+        final FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference ref = database.getReference();
+
+        DatabaseReference delivery_profiles = ref.child("Profiles");
+
+        delivery_profiles.child(currentuserUID).setValue(new Class_Profile("name", "address", "extrainfo","duid", "company"));
+
+
+
+
+        //retrieving and displaying data from the database
         dbreference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -72,19 +90,15 @@ public class DeliverySettingsFragment extends Fragment {
                 company_name.setText("");
                 namechange.setText("");
 
-                delivery_id.append(dataSnapshot.child("duid").getValue().toString());
-                company_name.append(dataSnapshot.child("company_name").getValue().toString());
-                namechange.append(dataSnapshot.child("name").getValue().toString());
-
-                Log.i("Fetching Profile", "Fetching Delivery Profile Information");
-
+                //to retrieve, please look at the database for the specific child name
+                delivery_id.append(dataSnapshot.child("deliveryID").getValue().toString());
+                company_name.append(dataSnapshot.child("company_Name").getValue().toString());
+                namechange.append(dataSnapshot.child("displayName").getValue().toString());
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
                 Log.i("Fetch Profile Failure", "Fetching Delivery Profile Failure");
-
             }
         });
 
@@ -103,9 +117,6 @@ public class DeliverySettingsFragment extends Fragment {
         });
 
 
-        namechange = (EditText) view.findViewById(R.id.delivery_edit_name);
-        namechange.setHint("");
-
 
         save_all_settings = (Button) view.findViewById(R.id.save_settings);
         save_all_settings.setOnClickListener(new View.OnClickListener() {
@@ -123,9 +134,13 @@ public class DeliverySettingsFragment extends Fragment {
 }
 
 
-//DONE:
-//this view can now retrieve and display the relevant information from the database
-//displayed name can be saved and changed in the database by pressing the save button
+//DONE
 //EVERYTHING WORKS
 
-//TODO STRUCTURE THE DATABASE PROPERLY
+
+//TODO LOG EVERYTHING
+//TODO REDUCE RETRIEVAL TIME
+//TODO FOR FUTURE: ADD PROFILE PICTURE
+
+
+
