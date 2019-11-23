@@ -3,34 +3,34 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".Home_Register">
+    tools:context=".Home_Register"
+    android:background="@color/colorPrimary">
 
 
     <TextView
+        android:id="@+id/HomeRegister"
+        android:text="Register New User"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/HomeRegister"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:text="Register New User"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-
         />
 
     <EditText
+        android:id="@+id/RegisterUsername"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/RegisterUsername"
-        android:hint="Username"
+        android:hint="Email"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/HomeRegister"
         android:inputType="textPersonName"
         />
 
     <EditText
+        android:id="@+id/RegisterPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/RegisterPassword"
         android:hint="Password"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/RegisterUsername"
@@ -47,11 +47,20 @@
         android:inputType="textPersonName"
         />
 
+    <EditText
+        android:id="@+id/RegisterAddress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Address"
+        android:layout_below="@+id/RegisterDisplayName"
+        android:layout_centerHorizontal="true"
+        />
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/BtnRegister"
-        android:layout_below="@id/RegisterDisplayName"
+        android:layout_below="@id/RegisterAddress"
         android:layout_centerHorizontal="true"
         android:text="Register"
         />
@@ -64,7 +73,6 @@
         android:layout_below="@id/BtnRegister"
         android:text="Back"
         />
-
 
 
 </RelativeLayout>

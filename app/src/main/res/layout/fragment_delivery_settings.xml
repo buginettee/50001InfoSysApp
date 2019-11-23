@@ -123,9 +123,9 @@
         />
 
     <Button
+        android:id="@+id/save_settings"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/save_settings"
         android:text="@string/save_setting_changes"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/delivery_company_display"

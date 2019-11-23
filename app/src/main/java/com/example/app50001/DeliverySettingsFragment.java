@@ -23,10 +23,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import org.w3c.dom.Text;
 
-import java.util.HashMap;
-import java.util.HashSet;
 
 public class DeliverySettingsFragment extends Fragment {
 
@@ -120,7 +117,7 @@ public class DeliverySettingsFragment extends Fragment {
 
                 dbreference.child("displayName").setValue(namechange.getText().toString());
 
-                Toast.makeText(getContext(), "You have successfully updated your name", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "You have successfully updated all settings.", Toast.LENGTH_SHORT).show();
 
             }
         });

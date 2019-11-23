@@ -16,20 +16,112 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         />
 
-    <TextView
+    <Button
+        android:id="@+id/home_logout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/text_settings"
-        android:background="@color/colorPrimary"
-        android:layout_marginLeft="20dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="80dp"
-        android:layout_marginRight="20dp"
+        android:text="@string/logout_text"
+        android:layout_alignRight="@+id/text_User_Settings"
+        android:layout_marginTop="15dp"
         android:layout_marginEnd="20dp"
-        android:text="NEED TO FIGURE WHAT TO ADD IN HERE"
+        android:layout_marginRight="20dp"
         />
 
+    <TextView
+        android:id="@+id/user_name_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Name:"
+        android:layout_marginLeft="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/text_User_Settings"
+        />
 
+    <EditText
+        android:id="@+id/user_name_display"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Change how your name is displayed"
+        android:layout_marginLeft="20dp"
+        android:layout_marginStart="20dp"
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        android:layout_below="@id/user_name_text"
+        />
+
+    <TextView
+        android:id="@+id/user_email_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_below="@id/user_name_display"
+        android:text="Email:"
+        />
+
+    <TextView
+        android:id="@+id/user_email_display"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_below="@id/user_email_text"
+        />
+
+    <TextView
+        android:id="@+id/user_address_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Address:"
+        android:layout_marginLeft="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_below="@id/user_email_display"
+        />
+
+    <EditText
+        android:id="@+id/user_address_display"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Update your address"
+        android:layout_marginLeft="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_below="@id/user_address_text"
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        />
+
+    <TextView
+        android:id="@+id/user_additionalinfo_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Additional Delivery Information:"
+        android:layout_marginLeft="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/user_address_display"
+        />
+
+    <EditText
+        android:id="@+id/user_additionalinfo_display"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Any additional delivery information/instructions?"
+        android:layout_marginLeft="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_below="@+id/user_additionalinfo_text"
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        />
+
+    <Button
+        android:id="@+id/user_save_all_settings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/save_setting_changes"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/user_additionalinfo_display"
+        android:layout_marginTop="20dp"
+        />
 
 
 </RelativeLayout>

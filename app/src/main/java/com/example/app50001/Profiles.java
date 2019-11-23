@@ -23,42 +23,49 @@ public class Profiles {
     public Profiles() {}
 
     //args constructor
-    public Profiles(String displayName, String email, String address, String additionalInformation, String duid,
-                    String company, HashMap<String, Object> adminOf, HashMap<String, Object> guestOf,
-                    HashMap<String, Object> deliveryOf, HashMap<String, Object> accessHistoryOfProfile,
-                    HashMap<String, Object> deliveryHistoryOfProfile){
+    public Profiles(String DisplayName,
+                    String Email,
+                    String Address,
+                    String AdditionalInformation,
+                    String DUID,
+                    String Company,
+                    HashMap<String, Object> AdminOf,
+                    HashMap<String, Object> GuestOf,
+                    HashMap<String, Object> DeliveryOf,
+                    HashMap<String, Object> AccessHistoryOfProfile,
+                    HashMap<String, Object> DeliveryHistoryOfProfile){
 
-        setDisplayName(displayName);
-        this.Email = email;
-        setAddress(address);
-        setAdditionalInformation(additionalInformation);
-        this.DUID = duid;
-        this.Company = company;
-        setAdminOf(adminOf);
-        setGuestOf(guestOf);
-        this.DeliveryOf = deliveryOf;
-        this.UserHistoryOfProfile = accessHistoryOfProfile;
-        this.DeliveryHistoryOfProfile = deliveryHistoryOfProfile;
+        setDisplayName(DisplayName);
+        this.Email = Email;
+        setAddress(Address);
+        setAdditionalInformation(AdditionalInformation);
+        this.DUID = DUID;
+        this.Company = Company;
+        setAdminOf(AdminOf);
+        setGuestOf(GuestOf);
+        this.DeliveryOf = DeliveryOf;
+        this.UserHistoryOfProfile = AccessHistoryOfProfile;
+        this.DeliveryHistoryOfProfile = DeliveryHistoryOfProfile;
     }
 
     //user profile creation
-    public Profiles (String displayName, String email, String address, String additionalInformation,
-                     HashMap<String, Object> adminOf, HashMap<String, Object> guestOf){
-        setDisplayName(displayName);
-        this.Email = email;
-        setAddress(address);
-        setAdditionalInformation(additionalInformation);
-        setAdminOf(adminOf);
-        setGuestOf(guestOf);
+    public Profiles (String DisplayName, String Email, String Address, String AdditionalInformation,
+                     HashMap<String, Object> AdminOf, HashMap<String, Object> GuestOf){
+        setDisplayName(DisplayName);
+        this.Email = Email;
+        setAddress(Address);
+        setAdditionalInformation(AdditionalInformation);
+        setAdminOf(AdminOf);
+        setGuestOf(GuestOf);
     }
 
     //delivery profile creation
-    public Profiles (String DisplayName, String email, String duid, String company, HashMap<String, Object> deliveryOf){
+    public Profiles (String DisplayName, String Email, String DUID, String Company, HashMap<String, Object> DeliveryOf){
         setDisplayName(DisplayName);
-        this.Email = email;
-        this.DUID = duid;
-        this.Company = company;
-        this.DeliveryOf = deliveryOf;
+        this.Email = Email;
+        this.DUID = DUID;
+        this.Company = Company;
+        this.DeliveryOf = DeliveryOf;
     }
 
 
