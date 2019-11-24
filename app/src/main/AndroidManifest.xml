@@ -11,6 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".RemoveGuestsFragment"></activity>
+        <activity android:name=".AddGuestsFragment" />
         <activity android:name=".UserSettingsFragment" />
         <activity android:name=".UserAddGuestsFragment" />
         <activity android:name=".UserHomeFragment" />

@@ -3,14 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/delivery_home">
+    android:id="@+id/user_add_guests">
 
 
     <TextView
+        android:id="@+id/guest_access_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/text_add_guest_title"
-        android:text="@string/user_guests_title"
+        android:text="Granting Guest Access"
         android:layout_marginTop="25dp"
         android:textAlignment="center"
         android:textSize="20sp"
@@ -18,47 +18,43 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/display_guests_access"
-        android:text="CHANGE TEXT TO RETRIEVE IF THE USER HAS AN ADMIN BOX"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/text_add_guest_title"
-        android:layout_marginStart="20dp"
+    <ExpandableListView
+        android:id="@+id/expandable_list_view"
+        android:layout_width="match_parent"
+        android:layout_height="350dp"
+        android:divider="@color/colorPrimary"
         android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginTop="20dp"
-        android:background="@color/colorPrimary"
+        android:layout_marginStart="20dp"
+        android:layout_below="@id/guest_access_title"
         />
 
     <TextView
+        android:id="@+id/test_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/display_guests_access_2"
-        android:text="AND THE GUESTS THAT THEY HAVE GRANTED ACCESS TO"
         android:layout_centerHorizontal="true"
-        android:layout_below="@+id/display_guests_access"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginTop="20dp"
-        android:background="@color/colorPrimary"
+        android:layout_centerVertical="true"
+        android:visibility="invisible"
         />
+
 
     <Button
+        android:id="@+id/add_new_guests"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/add_new_guests"
         android:text="@string/user_add_new_guests"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="500dp"
         />
 
-
-
+    <Button
+        android:id="@+id/remove_guests"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Remove Guests"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/add_new_guests"
+        />
 
 
 </RelativeLayout>

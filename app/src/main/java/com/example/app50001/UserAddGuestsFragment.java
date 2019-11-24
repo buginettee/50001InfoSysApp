@@ -2,148 +2,147 @@ package com.example.app50001;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
-import android.os.Build;
+import android.content.Intent;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ExpandableListAdapter;
+import android.widget.ExpandableListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
-import java.time.LocalDate;
-import java.util.Date;
+import org.w3c.dom.Text;
+
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class UserAddGuestsFragment extends Fragment {
 
-        private DatabaseReference dbreference;
-        private FirebaseAuth dbauth;
+    private ExpandableListView expandableListView;
+    private ExpandableListAdapter expandableListAdapter;
+    private List<String> expandableListTitle;
+    private HashMap<String, List<String>> expandableListDetail;
 
-        @RequiresApi(api = Build.VERSION_CODES.O)
-        @Override
-        public void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
+    private Button add_new_guests;
+    private Button remove_guests;
 
-            //calling instances of auth and reference
-            dbauth = FirebaseAuth.getInstance();
-            dbreference = FirebaseDatabase.getInstance().getReference();
+    private DatabaseReference dbreference;
+    private FirebaseAuth dbauth;
 
+    private String currentUID;
 
-            //if you want to add a complete profile with all attributes available (users)
-            FirebaseUser currentuser = dbauth.getCurrentUser();
-            String currentUID = currentuser.getUid();
-
-            DatabaseReference userRef = dbreference.child("Profiles").child(currentUID);
-
-            String email = currentuser.getEmail();
-
-            HashMap<String, Object> adminOf = new HashMap<>();
-            adminOf.put("Box32","Address of Box32");
-
-            HashMap<String, Object> guestOf = new HashMap<>();
-            guestOf.put("Box32","Address of Box32");
-
-            HashMap<String, Object> deliveryOf = new HashMap<>();
-            deliveryOf.put("Box32","Address of Box32");
-
-            HashMap<String, Object> boxAccessed = new HashMap<>();
-            boxAccessed.put("Box10","Address of Box10");
-
-            HashMap<String, Object> userHistoryOf = new HashMap<>();
-            userHistoryOf.put("YYYY-MM-DD",boxAccessed);
-
-            HashMap<String, Object> deliveryHistoryOf = new HashMap<>();
-            deliveryHistoryOf.put("04-08-2019", boxAccessed);
-
-            userRef.setValue( new Profiles("displayName",
-                    email,
-                    "Address",
-                    "Additional Information for Delivery",
-                    "Delivery ID if any",
-                    "Company Name if any",
-                    adminOf,
-                    guestOf,
-                    deliveryOf,
-                    userHistoryOf,
-                    deliveryHistoryOf));
-
-            HashMap<String, Object> newAccess = new HashMap<>();
-            newAccess.put("new Box", "new Address");
-
-            String date = java.time.LocalDate.now().toString();
-
-            userRef.child("AdminOf").updateChildren(newAccess);
-
-            userRef.child("GuestOf").updateChildren(newAccess);
-
-            userRef.child("DeliveryOf").updateChildren(newAccess);
-
-            userRef.child("AccessHistoryOfProfile").child(date).updateChildren(newAccess);
-
-            userRef.child("DeliveryHistoryOfProfile").child(date).updateChildren(newAccess);
+    private TextView test_text;
 
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 
+        //get instance of the current user
+        dbauth = FirebaseAuth.getInstance();
 
+        FirebaseUser currentuser = dbauth.getCurrentUser();
+        currentUID = currentuser.getUid();
 
-
-            //if you want to add a new box
-
-            dbauth = FirebaseAuth.getInstance();
-            dbreference = FirebaseDatabase.getInstance().getReference();
-
-
-            DatabaseReference boxRef = dbreference.child("Boxes");
-
-            String BoxNo = "Box ID";
-
-            HashMap<String, Object> AdminAccess = new HashMap<>();
-            AdminAccess.put("DisplayName", "UID generated by FireBase");
-
-            HashMap<String, Object> GuestAccess = new HashMap<>();
-            GuestAccess.put("DisplayName", "UID generated by FireBase");
-
-            HashMap<String, Object> DeliveryAccess = new HashMap<>();
-            DeliveryAccess.put("DUID", "UID generated by FireBase");
-
-            boxRef.child(BoxNo).setValue( new Boxes(AdminAccess,
-                    GuestAccess,
-                    DeliveryAccess,
-                    true,
-                    false,
-                    false));
-
-
-            HashMap<String, Object> NewAccess = new HashMap<>();
-            NewAccess.put("DisplayName", "New UID");
-
-            HashMap<String, Object> NewDeliveryAccess = new HashMap<>();
-            NewDeliveryAccess.put("DUID", "New UID");
-
-
-            boxRef.child(BoxNo).child("AdminAccess").updateChildren(NewAccess);
-
-            boxRef.child(BoxNo).child("GuestAccess").updateChildren(NewAccess);
-
-            boxRef.child(BoxNo).child("DeliveryAccess").updateChildren(NewDeliveryAccess);
-
-
-        }
-
-
+        dbreference = FirebaseDatabase.getInstance().getReference();
+    }
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
-        return inflater.inflate(R.layout.fragment_user_add_guests, null);
+        View view = inflater.inflate(R.layout.fragment_user_add_guests, null);
+
+        add_new_guests = (Button) view.findViewById(R.id.add_new_guests);
+        remove_guests = (Button) view.findViewById(R.id.remove_guests);
+
+
+        add_new_guests.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AddGuestsFragment add_guest_fragment = new AddGuestsFragment();
+                FragmentManager manager = getFragmentManager();
+                FragmentTransaction trans = manager.beginTransaction().replace(R.id.user_fragment_container, add_guest_fragment);
+                trans.commit();
+            }
+        });
+
+        remove_guests.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                RemoveGuestsFragment remove_guest_fragment = new RemoveGuestsFragment();
+                FragmentManager manager = getFragmentManager();
+                FragmentTransaction trans = manager.beginTransaction().replace(R.id.user_fragment_container, remove_guest_fragment);
+                trans.commit();
+            }
+        });
+
+
+
+        return view;
+    }
+
+
+
+    public void preparedata(){
+
+        expandableListTitle = new ArrayList<>();
+        expandableListDetail = new HashMap<>();
+
+        test_text.setText("");
+        dbreference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                for (DataSnapshot checkadmin : dataSnapshot.child("Profiles").child(currentUID).child("AdminOf").getChildren()){
+
+                    String adminbox = checkadmin.getKey().toString();
+                    test_text.append(adminbox + "\n");
+                    expandableListTitle.add(adminbox);
+                    List<String> checkguests = new ArrayList<>();
+
+                    for(DataSnapshot boxguests : dataSnapshot.child("Boxes").child(adminbox).child("GuestAccess").getChildren()){
+                        checkguests.add(boxguests.getKey().toString() + ": " + boxguests.getValue().toString());
+                        test_text.append(boxguests + "\n");
+                    }
+                    expandableListDetail.put(adminbox,checkguests);
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.d("Help", "help it's not working");
+            }
+        });
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        test_text = (TextView) view.findViewById(R.id.test_text);
+
+        expandableListView = (ExpandableListView) view.findViewById(R.id.expandable_list_view);
+        preparedata();
+        expandableListAdapter = new backendCustomExpandabaleListView(getActivity(), expandableListTitle, expandableListDetail);
+        expandableListView.setAdapter(expandableListAdapter);
     }
 }
+
+

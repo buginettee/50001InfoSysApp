@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddGuestsFragment">
+
+    <TextView
+        android:id="@+id/text_add_guests"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:text="Add Guests"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        />
+
+    <TextView
+        android:id="@+id/add_guest_name_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add Guest's Name:"
+        android:layout_marginLeft="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/text_add_guests"
+        />
+
+    <EditText
+        android:id="@+id/add_guest_name_display"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Input the name of your guest"
+        android:layout_marginLeft="20dp"
+        android:layout_marginStart="20dp"
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        android:layout_below="@id/add_guest_name_text"
+        />
+
+    <TextView
+        android:id="@+id/add_guest_UID_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_below="@id/add_guest_name_display"
+        android:text="Guest's UID:"
+        />
+
+    <EditText
+        android:id="@+id/add_guest_UID_display"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Input the UID of your guest"
+        android:layout_marginLeft="20dp"
+        android:layout_marginStart="20dp"
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        android:layout_below="@id/add_guest_UID_text"
+        />
+
+    <TextView
+        android:id="@+id/add_guest_box_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:text="Choose box to grant access to:"
+        android:layout_below="@id/add_guest_UID_display"
+        />
+
+    <EditText
+        android:id="@+id/add_guest_box_display"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginStart="20dp"
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        android:hint="Enter Box ID"
+        android:layout_below="@id/add_guest_box_text"
+        />
+
+
+    <Button
+        android:id="@+id/save_add_guest_changes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/save_setting_changes"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/add_guest_box_display"
+        android:layout_marginTop="20dp"
+        />
+
+
+</RelativeLayout>
+
+
+

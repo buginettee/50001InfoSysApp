@@ -55,7 +55,7 @@ public class UserSettingsFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_user_settings, null);
+        View view = inflater.inflate(R.layout.fragment_user_settings,container, false);
 
         name_display = (EditText) view.findViewById(R.id.user_name_display);
         email_display = (TextView) view.findViewById(R.id.user_email_display);

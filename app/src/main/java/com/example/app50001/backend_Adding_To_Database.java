@@ -107,6 +107,7 @@ Code starts:
         boxRef.child(BoxNo).setValue( new Boxes(AdminAccess,
                                                 GuestAccess,
                                                 DeliveryAccess,
+                                                Address,
                                                 true,
                                                 false,
                                                 false));
