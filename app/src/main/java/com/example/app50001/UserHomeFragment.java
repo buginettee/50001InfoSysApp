@@ -94,7 +94,15 @@ public class UserHomeFragment extends Fragment {
             }
         });
 
-
+        tempunlock.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TempUnlockFragment temp_unlock_now = new TempUnlockFragment();
+                FragmentManager manager = getFragmentManager();
+                FragmentTransaction trans = manager.beginTransaction().replace(R.id.user_fragment_container, temp_unlock_now);
+                trans.commit();
+            }
+        });
 
         return view;
     }
