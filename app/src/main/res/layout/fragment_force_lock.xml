@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddGuestsFragment">
+
+    <TextView
+        android:id="@+id/force_lock_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:text="Force Lock"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        />
+
+    <TextView
+        android:id="@+id/to_force_lock_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Enter Box ID to force lock:"
+        android:layout_marginLeft="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/force_lock_title"
+        />
+
+    <EditText
+        android:id="@+id/to_force_lock_display"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Input box ID"
+        android:layout_marginLeft="20dp"
+        android:layout_marginStart="20dp"
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        android:layout_below="@id/to_force_lock_text"
+        />
+
+
+    <Button
+        android:id="@+id/save_force_lock_changes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/save_setting_changes"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/to_force_lock_display"
+        android:layout_marginTop="20dp"
+        />
+
+
+</RelativeLayout>

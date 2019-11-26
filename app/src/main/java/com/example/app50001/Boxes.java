@@ -10,7 +10,6 @@ public class Boxes {
     public String Address;
     public boolean LockState;
     public boolean DoorState;
-    public boolean AccessState;
 
     public Boxes(){}
 
@@ -19,8 +18,8 @@ public class Boxes {
                  HashMap<String, Object> deliveryAccess,
                  String Address,
                  Boolean LockState,
-                 Boolean DoorState,
-                 Boolean AccessState){
+                 Boolean DoorState
+                 ){
 
         this.AdminAccess = adminAccess;
         this.GuestAccess = guestAccess;
@@ -28,7 +27,6 @@ public class Boxes {
         this.Address = Address;
         this.LockState = LockState;
         this.DoorState = DoorState;
-        this.AccessState = AccessState;
     }
 }
 
