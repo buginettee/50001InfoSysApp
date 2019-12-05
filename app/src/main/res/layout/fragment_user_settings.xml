@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/user_settings">
+    android:id="@+id/user_settings"
+    android:background="@color/colorPrimary">
 
     <TextView
         android:id="@+id/text_User_Settings"
@@ -11,7 +12,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="25dp"
         android:textAlignment="center"
-        android:textSize="20sp"
+        android:textSize="40sp"
         android:text="@string/delivery_navigation_settings"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         />
@@ -21,10 +22,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/logout_text"
-        android:layout_alignRight="@+id/text_User_Settings"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginRight="20dp"
+        android:layout_toLeftOf="@+id/save_settings"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="20dp"
         />
 
     <TextView
@@ -98,8 +98,8 @@
         android:layout_height="wrap_content"
         android:text="@string/save_setting_changes"
         android:layout_centerHorizontal="true"
-        android:layout_below="@+id/user_address_display"
-        android:layout_marginTop="20dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="20dp"
         />
 
 
