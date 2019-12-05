@@ -3,17 +3,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/delivery_home">
+    android:id="@+id/delivery_home"
+    android:background="@color/colorPrimary">
 
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/text_check_box_access"
-        android:text="@string/retrieve_box_admin"
+        android:text="My Boxes"
         android:layout_marginTop="25dp"
         android:textAlignment="center"
-        android:textSize="20sp"
+        android:textSize="40sp"
         android:layout_centerHorizontal="true"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         />

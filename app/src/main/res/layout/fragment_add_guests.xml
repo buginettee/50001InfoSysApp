@@ -3,7 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AddGuestsFragment">
+    tools:context=".AddGuestsFragment"
+    android:background="@color/colorPrimary">
+
+
 
     <TextView
         android:id="@+id/text_add_guests"
@@ -12,7 +15,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="25dp"
         android:textAlignment="center"
-        android:textSize="20sp"
+        android:textSize="40sp"
         android:text="Add Guests"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         />
@@ -90,8 +93,8 @@
         android:layout_height="wrap_content"
         android:text="@string/save_setting_changes"
         android:layout_centerHorizontal="true"
-        android:layout_below="@+id/add_guest_box_display"
-        android:layout_marginTop="20dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="20dp"
         />
 
 

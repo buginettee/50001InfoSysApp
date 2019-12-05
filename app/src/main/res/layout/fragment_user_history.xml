@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/user_history">
+    android:id="@+id/user_history"
+    android:background="@color/colorPrimary">
 
     <TextView
         android:id="@+id/text_User_History"
@@ -11,7 +12,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="25dp"
         android:textAlignment="center"
-        android:textSize="20dp"
+        android:textSize="40dp"
         android:text="@string/user_history_title"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         />
