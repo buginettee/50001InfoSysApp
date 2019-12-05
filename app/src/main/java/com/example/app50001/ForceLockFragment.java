@@ -52,6 +52,7 @@ public class ForceLockFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_force_lock, container, false);
+        final String check = "locked";
 
         box_id = (EditText) view.findViewById(R.id.to_force_lock_display);
 
@@ -62,7 +63,7 @@ public class ForceLockFragment extends Fragment {
 
                 //lock only if the current user is the admin of the box input
                 Query query = boxRef.child(box_id.getText().toString()).child("AdminAccess").orderByValue().equalTo(uid);
-                query.addListenerForSingleValueEvent(new ValueEventListener() {
+                query.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         //the currentuser is indeed the admin of the current box
@@ -70,23 +71,24 @@ public class ForceLockFragment extends Fragment {
 
                             //i am admin and now to check if my action is legal
                             //checking if the doorstate is currently locked
-                            Query query2 = boxRef.child(box_id.getText().toString()).child("DoorState").equalTo("locked");//locked and unlocked
-                            query2.addListenerForSingleValueEvent(new ValueEventListener() {
+                            Query query2 = boxRef.child(box_id.getText().toString()).child("LockState").orderByValue().equalTo(check);//locked and unlocked
+                            query2.addValueEventListener(new ValueEventListener() {
                                 @Override
                                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                     if (dataSnapshot.exists()) {
 
-                                        Query query3 = boxRef.child(box_id.getText().toString()).child("LockState").equalTo("unlocked");//locked and unlocked
-                                        query3.addListenerForSingleValueEvent(new ValueEventListener() {
+                                        Query query3 = boxRef.child(box_id.getText().toString()).child("DoorState").orderByValue().equalTo(check);//locked and unlocked
+                                        query3.addValueEventListener(new ValueEventListener() {
                                             @Override
                                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                                 if (dataSnapshot.exists()) {
 
                                                     boxRef.child(box_id.getText().toString()).child("ButtonState").setValue("Locked");
+
                                                     Toast.makeText(getContext(), "You have successfully locked the box", Toast.LENGTH_SHORT).show();
 
                                                 } else {
-                                                    Toast.makeText(getContext(), "This action cannot be completed. Please check if the box is closed properly.", Toast.LENGTH_SHORT).show();
+                                                    Toast.makeText(getContext(), "Problem A.", Toast.LENGTH_SHORT).show();
                                                 }
                                             }
 
@@ -95,17 +97,15 @@ public class ForceLockFragment extends Fragment {
                                             }
                                         });
                                     } else {
-                                        Toast.makeText(getContext(), "This action cannot be completed. Please check if the box is closed properly.", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getContext(), "Problem B.", Toast.LENGTH_SHORT).show();
                                     }
                                 }
                                 @Override
                                 public void onCancelled(@NonNull DatabaseError databaseError) {}
                             });
 
-
                         }
                     }
-
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError) {
 
