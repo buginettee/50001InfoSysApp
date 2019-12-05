@@ -8,76 +8,87 @@
     tools:context=".Login_Main">
 
 
-
-
     <TextView
         android:id="@+id/ChooseLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAlignment="center"
-        android:text="Select Login"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
         android:background="@color/colorAccent"
+        android:text="Select Login"
+        android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:layout_centerHorizontal="true"
-        />
-
+        android:textSize="50dp" />
 
     <ImageButton
         android:id="@+id/DeliveryChoice"
-        android:layout_width="210dp"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/ChooseLogin"
+        android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
+        android:layout_toLeftOf="@+id/or"
         android:background="@color/colorAccent"
         android:visibility="visible"
         app:srcCompat="@drawable/ic_delivery_login"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginRight="10dp"
         />
 
-
-    <ImageButton
-        android:id="@+id/HomeChoice"
-        android:layout_width="210dp"
-        android:layout_height="match_parent"
-        app:srcCompat="@drawable/ic_home_login"
-        android:background="@color/colorAccent"
-        android:layout_centerVertical="true"
-        android:layout_toRightOf="@+id/DeliveryChoice"
-        android:layout_below="@+id/ChooseLogin"
-        />
 
     <TextView
         android:id="@+id/DeliveryChoiceText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="75dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="420dp"
-        android:textStyle="bold"
+        android:layout_alignStart="@+id/DeliveryChoice"
+        android:layout_alignLeft="@+id/DeliveryChoice"
+        android:layout_alignTop="@+id/DeliveryChoice"
+        android:layout_alignEnd="@+id/DeliveryChoice"
+        android:layout_alignRight="@+id/DeliveryChoice"
+        android:gravity="center"
+        android:text="Delivery"
+        android:textColor="@color/colorPrimaryDark"
+        android:textStyle="bold" />
+
+    <ImageButton
+        android:id="@+id/HomeChoice"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:srcCompat="@drawable/ic_home_login"
         android:background="@color/colorAccent"
-        android:text="Delivery" />
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:layout_toRightOf="@+id/or"
+        android:layout_below="@+id/ChooseLogin"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="10dp"
+        />
+
 
     <TextView
         android:id="@+id/HomeChoiceText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Home"
-        android:textStyle="bold"
+        android:layout_alignStart="@+id/HomeChoice"
+        android:layout_alignLeft="@+id/HomeChoice"
+        android:layout_alignTop="@+id/HomeChoice"
+        android:layout_alignEnd="@+id/HomeChoice"
+        android:layout_alignRight="@+id/HomeChoice"
+        android:gravity="center"
         android:background="@color/colorAccent"
-        android:layout_marginStart="290dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="420dp"
-        />
+        android:text="Home"
+        android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/tv_or"
+        android:id="@+id/or"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="360dp"
-        android:fontFamily="sans-serif-condensed-medium"
-        android:text="OR"
-        android:textStyle="bold"
-        android:textSize="30sp"
+        android:layout_centerVertical="true"
         />
 
 </RelativeLayout>
