@@ -76,7 +76,7 @@ public class UserHistoryFragment extends Fragment {
         userdetails = new HashMap<String, List<String>>();
 
 
-        userreference.child("UserHistoryOfProfile").addValueEventListener(new ValueEventListener() {
+        userreference.child("userHistoryOfProfile").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
@@ -107,3 +107,4 @@ public class UserHistoryFragment extends Fragment {
 
     }
 }
+//COMPLETED

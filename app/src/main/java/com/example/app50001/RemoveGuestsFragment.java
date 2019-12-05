@@ -66,7 +66,7 @@ public class RemoveGuestsFragment extends Fragment {
                     !remove_box.getText().toString().isEmpty()){
 
                     //action legal if i am actually admin
-                    Query query = boxRef.child(remove_box.getText().toString()).child("AdminAccess").orderByValue().equalTo(UID);
+                    Query query = boxRef.child(remove_box.getText().toString()).child("adminAccess").orderByValue().equalTo(UID);
 
                     query.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
@@ -75,7 +75,7 @@ public class RemoveGuestsFragment extends Fragment {
                             if(dataSnapshot.exists()){
 
                                 //check if the guest is actually in the guest list
-                                Query query2 = boxRef.child(remove_box.getText().toString()).child("GuestAccess").orderByValue().equalTo(remove_guest_UID.getText().toString());
+                                Query query2 = boxRef.child(remove_box.getText().toString()).child("guestAccess").orderByValue().equalTo(remove_guest_UID.getText().toString());
 
                                 query2.addListenerForSingleValueEvent(new ValueEventListener() {
                                     @Override
@@ -86,11 +86,12 @@ public class RemoveGuestsFragment extends Fragment {
                                             //remove from the box guest access
                                             dataSnapshot.getRef().removeValue();
 
-                                            userRef.child("GuestOf").child(remove_box.getText().toString()).removeValue();
+                                            userRef.child("guestOf").child(remove_box.getText().toString()).removeValue();
+                                            Toast.makeText(getContext(), "You have successfully removed guest access.", Toast.LENGTH_SHORT).show();
 
 
                                         } else {
-                                            Toast.makeText(getContext(),"Guest does not exist", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(getContext(),"Guest does not exist.", Toast.LENGTH_SHORT).show();
                                         }
                                     }
                                     @Override
@@ -99,7 +100,7 @@ public class RemoveGuestsFragment extends Fragment {
                                 });
 
                             } else {
-                                Toast.makeText(getContext(),"You do not have admin access", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getContext(),"You do not have admin access.", Toast.LENGTH_SHORT).show();
                             }
 
                         }
@@ -109,6 +110,8 @@ public class RemoveGuestsFragment extends Fragment {
 
                         }
                     });
+                } else {
+                    Toast.makeText(getContext(), "Please fill in all the fields.", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -116,5 +119,4 @@ public class RemoveGuestsFragment extends Fragment {
     }
 }
 
-//DONE
-//EVERYTHING WORKS
+//COMPLETED

@@ -2,7 +2,6 @@ package com.example.app50001;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -82,10 +81,10 @@ public class DeliverySettingsFragment extends Fragment {
                 namechange.setText("");
                 delivery_email.setText("");
 
-                delivery_id.append(dataSnapshot.child("DUID").getValue().toString());
-                company_name.append(dataSnapshot.child("Company").getValue().toString());
+                delivery_id.append(dataSnapshot.child("duid").getValue().toString());
+                company_name.append(dataSnapshot.child("company").getValue().toString());
                 namechange.append(dataSnapshot.child("displayName").getValue().toString());
-                delivery_email.append(dataSnapshot.child("Email").getValue().toString());
+                delivery_email.append(dataSnapshot.child("email").getValue().toString());
 
 
             }
@@ -101,7 +100,7 @@ public class DeliverySettingsFragment extends Fragment {
             public void onClick(View v) {
                 dbauth.signOut();
 
-                Toast.makeText(getContext(), "You have logged out", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "You have logged out successfully.", Toast.LENGTH_SHORT).show();
 
                 Intent logouttomain = new Intent(getActivity(), Login_Main.class);
                 startActivity(logouttomain);
@@ -126,14 +125,7 @@ public class DeliverySettingsFragment extends Fragment {
 }
 
 
-//DONE
-//EVERYTHING WORKS
-//LAYOUT DONE
-
-
-//TODO LOG EVERYTHING
-//TODO REDUCE RETRIEVAL TIME
-//TODO FOR FUTURE: ADD PROFILE PICTURE
+//COMPLETED
 
 
 

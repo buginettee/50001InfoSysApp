@@ -61,55 +61,43 @@ public class ForceLockFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
+
                 //lock only if the current user is the admin of the box input
-                Query query = boxRef.child(box_id.getText().toString()).child("AdminAccess").orderByValue().equalTo(uid);
+                Query query = boxRef.child(box_id.getText().toString()).child("adminAccess").orderByValue().equalTo(uid);
                 query.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         //the currentuser is indeed the admin of the current box
-                        if(dataSnapshot.exists()){
+                        if(dataSnapshot.exists()) {
 
-                            //i am admin and now to check if my action is legal
-                            //checking if the doorstate is currently locked
-                            Query query2 = boxRef.child(box_id.getText().toString()).child("LockState").orderByValue().equalTo(check);//locked and unlocked
-                            query2.addValueEventListener(new ValueEventListener() {
+                            boxRef.addListenerForSingleValueEvent(new ValueEventListener() {
                                 @Override
                                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                    if (dataSnapshot.exists()) {
+                                    if(dataSnapshot.child(box_id.getText().toString()).child("doorState").getValue().equals(check)){
+                                        if(dataSnapshot.child(box_id.getText().toString()).child("lockState").getValue().equals(check)){
 
-                                        Query query3 = boxRef.child(box_id.getText().toString()).child("DoorState").orderByValue().equalTo(check);//locked and unlocked
-                                        query3.addValueEventListener(new ValueEventListener() {
-                                            @Override
-                                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                                if (dataSnapshot.exists()) {
+                                            boxRef.child(box_id.getText().toString()).child("buttonState").setValue("Locked");
+                                            Toast.makeText(getContext(), "You have successfully locked the box.", Toast.LENGTH_SHORT).show();
 
-                                                    boxRef.child(box_id.getText().toString()).child("ButtonState").setValue("Locked");
-
-                                                    Toast.makeText(getContext(), "You have successfully locked the box", Toast.LENGTH_SHORT).show();
-
-                                                } else {
-                                                    Toast.makeText(getContext(), "Problem A.", Toast.LENGTH_SHORT).show();
-                                                }
-                                            }
-
-                                            @Override
-                                            public void onCancelled(@NonNull DatabaseError databaseError) {
-                                            }
-                                        });
+                                        } else {
+                                            Toast.makeText(getContext(), "Please ensure that the door is closed properly.", Toast.LENGTH_SHORT).show();
+                                        }
                                     } else {
-                                        Toast.makeText(getContext(), "Problem B.", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getContext(), "Please ensure that the door is closed properly.", Toast.LENGTH_SHORT).show();
                                     }
                                 }
-                                @Override
-                                public void onCancelled(@NonNull DatabaseError databaseError) {}
-                            });
 
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                }
+                            });
                         }
                     }
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError) {
 
-                        Toast.makeText(getContext(),"You do not have admin access to this box", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(),"You do not have admin access to this box.", Toast.LENGTH_SHORT).show();
 
                     }
                 });
@@ -119,3 +107,5 @@ public class ForceLockFragment extends Fragment {
         return view;
     }
 }
+
+//COMPLETE

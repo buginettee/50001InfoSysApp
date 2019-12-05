@@ -2,7 +2,6 @@ package com.example.app50001;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.content.Intent;
@@ -28,7 +27,6 @@ public class UserSettingsFragment extends Fragment {
     private Button home_logout;
     private EditText name_display;
     private TextView email_display;
-    private EditText address_display;
     private Button save_settings;
 
     private DatabaseReference dbreference;
@@ -56,7 +54,6 @@ public class UserSettingsFragment extends Fragment {
 
         name_display = (EditText) view.findViewById(R.id.user_name_display);
         email_display = (TextView) view.findViewById(R.id.user_email_display);
-        address_display = (EditText) view.findViewById(R.id.user_address_display);
 
 
         dbreference.addValueEventListener(new ValueEventListener() {
@@ -65,11 +62,9 @@ public class UserSettingsFragment extends Fragment {
 
                 name_display.setText("");
                 email_display.setText("");
-                address_display.setText("");
 
-                name_display.append(dataSnapshot.child("DisplayName").getValue().toString());
-                email_display.append(dataSnapshot.child("Email").getValue().toString());
-                address_display.append(dataSnapshot.child("Address").getValue().toString());
+                name_display.append(dataSnapshot.child("displayName").getValue().toString());
+                email_display.append(dataSnapshot.child("email").getValue().toString());
                 }
 
 
@@ -102,8 +97,6 @@ public class UserSettingsFragment extends Fragment {
 
                 dbreference.child("displayName").setValue(name_display.getText().toString());
 
-                dbreference.child("address").setValue(address_display.getText().toString());
-
                 Toast.makeText(getContext(), "You have successfully updated all settings.", Toast.LENGTH_SHORT).show();
             }
         });
@@ -112,5 +105,4 @@ public class UserSettingsFragment extends Fragment {
     }
 }
 
-//DONE
-//ALL WORKING
+//COMPLETED

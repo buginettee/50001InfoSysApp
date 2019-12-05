@@ -22,10 +22,7 @@ public class backend_Delivery_Home extends AppCompatActivity implements BottomNa
 
         bottomNavigationView = findViewById(R.id.delivery_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
-
-
-        loadFragment(new DeliveryHomeFragment());
-
+        bottomNavigationView.setSelectedItemId(R.id.delivery_navigation_home);
     }
 
     private boolean loadFragment(Fragment fragment) {
@@ -59,8 +56,8 @@ public class backend_Delivery_Home extends AppCompatActivity implements BottomNa
                 loadFragment(fragment);
                 return true;
         }
-        return false;
+        return true;
     }
 }
 
-//DONE
+//COMPLETED
