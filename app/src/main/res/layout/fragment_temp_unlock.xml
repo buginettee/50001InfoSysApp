@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ForceLockFragment">
+    tools:context=".ForceLockFragment"
+    android:background="@color/colorPrimary">
 
     <TextView
         android:id="@+id/temp_unlock_title"
@@ -13,7 +14,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="25dp"
         android:textAlignment="center"
-        android:textSize="20sp"
+        android:textSize="40sp"
         android:text="Temporary Unlock"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         />
@@ -26,7 +27,8 @@
         android:layout_marginLeft="20dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
-        android:layout_below="@+id/temp_unlock_title"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
         />
 
     <EditText
@@ -34,8 +36,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:hint="Input box ID"
-        android:layout_marginLeft="20dp"
-        android:layout_marginStart="20dp"
+        android:layout_centerHorizontal="true"
         android:textAppearance="@style/TextAppearance.AppCompat"
         android:layout_below="@id/to_unlock_text"
         />
@@ -47,8 +48,8 @@
         android:layout_height="wrap_content"
         android:text="@string/save_setting_changes"
         android:layout_centerHorizontal="true"
-        android:layout_below="@+id/to_unlock_display"
-        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_alignParentBottom="true"
         />
 
 
