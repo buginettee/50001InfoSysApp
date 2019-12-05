@@ -68,14 +68,41 @@ public class ForceLockFragment extends Fragment {
                         //the currentuser is indeed the admin of the current box
                         if(dataSnapshot.exists()){
 
-                            //go to the box id and change its lock and door status?
-                            boxRef.child(box_id.getText().toString()).child("ButtonState").setValue("Locked");
+                            //i am admin and now to check if my action is legal
+                            //checking if the doorstate is currently locked
+                            Query query2 = boxRef.child(box_id.getText().toString()).child("DoorState").equalTo("locked");//locked and unlocked
+                            query2.addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                    if (dataSnapshot.exists()) {
+
+                                        Query query3 = boxRef.child(box_id.getText().toString()).child("LockState").equalTo("unlocked");//locked and unlocked
+                                        query3.addListenerForSingleValueEvent(new ValueEventListener() {
+                                            @Override
+                                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                                if (dataSnapshot.exists()) {
+
+                                                    boxRef.child(box_id.getText().toString()).child("ButtonState").setValue("Locked");
+                                                    Toast.makeText(getContext(), "You have successfully locked the box", Toast.LENGTH_SHORT).show();
+
+                                                } else {
+                                                    Toast.makeText(getContext(), "This action cannot be completed. Please check if the box is closed properly.", Toast.LENGTH_SHORT).show();
+                                                }
+                                            }
+
+                                            @Override
+                                            public void onCancelled(@NonNull DatabaseError databaseError) {
+                                            }
+                                        });
+                                    } else {
+                                        Toast.makeText(getContext(), "This action cannot be completed. Please check if the box is closed properly.", Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError databaseError) {}
+                            });
 
 
-                           // boxRef.child(box_id.getText().toString()).child("DoorState").setValue(false);
-                           // boxRef.child(box_id.getText().toString()).child("LockState").setValue(true);
-
-                            Toast.makeText(getContext(), "You have successfully locked the box", Toast.LENGTH_SHORT).show();
                         }
                     }
 

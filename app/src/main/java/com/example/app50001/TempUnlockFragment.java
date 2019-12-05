@@ -75,8 +75,6 @@ public class TempUnlockFragment extends Fragment {
 
                             boxRef.child(box_id.getText().toString()).child("ButtonState").setValue("Unlocked");
 
-                            //boxRef.child(box_id.getText().toString()).child("DoorState").setValue(true);
-                            //boxRef.child(box_id.getText().toString()).child("LockState").setValue(false);
                             Toast.makeText(getContext(),"You have unlocked the box", Toast.LENGTH_SHORT).show();
                         }
                         else {
@@ -89,8 +87,7 @@ public class TempUnlockFragment extends Fragment {
                                         //the user is a guest
                                         boxRef.child(box_id.getText().toString()).child("ButtonState").setValue("Unlocked");
 
-                                        //boxRef.child(box_id.getText().toString()).child("DoorState").setValue(true);
-                                        //boxRef.child(box_id.getText().toString()).child("LockState").setValue(false);
+
                                         Toast.makeText(getContext(), "You have unlocked the box", Toast.LENGTH_SHORT).show();
                                     } else {
                                         //since the user is neither guest nor admin, no access is granted

@@ -3,13 +3,18 @@ package com.example.app50001;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
 
 import java.util.HashMap;
 import java.util.List;
@@ -19,12 +24,15 @@ public class backendDeliveryCustomRecyclerView extends RecyclerView.Adapter<back
     private Context context;
     private List<String> titles;
     private HashMap<String, List<String>> details; //title, (address, addinfo)
+    private DeliveryHomeFragment deliveryfrag;
+
 
     //constructor
-    public backendDeliveryCustomRecyclerView(Context context, List<String> titles, HashMap<String, List<String>> details) {
+    public backendDeliveryCustomRecyclerView(Context context, List<String> titles, HashMap<String, List<String>> details, DeliveryHomeFragment deliveryfragment) {
         this.context = context;
         this.titles = titles;
         this.details = details;
+        this.deliveryfrag = deliveryfragment;
     }
 
     @NonNull
@@ -60,17 +68,19 @@ public class backendDeliveryCustomRecyclerView extends RecyclerView.Adapter<back
         public TextView addinfoDisplay;
 
 
-        //need to overwrite
-   //     public void accessdatabase(String titletoaccess) {
-    //    }
+        public void onClick(View v) {
 
-        public customViewHolder(@NonNull View itemView) {
+        }
+          //  }
+
+        public customViewHolder(@NonNull final View itemView) {
             super(itemView);
 
             this.titleDisplay = (TextView) itemView.findViewById(R.id.recycler_delivery_title_display);
             this.addressDisplay = (TextView) itemView.findViewById(R.id.recycler_delivery_address_display);
             this.addinfoDisplay = (TextView) itemView.findViewById(R.id.recycler_delivery_addinfo_display);
-/*
+
+
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -85,8 +95,8 @@ public class backendDeliveryCustomRecyclerView extends RecyclerView.Adapter<back
 
                     AlertDialog.Builder builder = new AlertDialog.Builder(context);
                     builder.setTitle(title);
-                    builder.setMessage("Placeholder text");
-                    builder.setNeutralButton("Cancel", new DialogInterface.OnClickListener() {
+                    builder.setMessage("Are you ready to complete the delivery?");
+                    builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             dialog.dismiss();
@@ -95,7 +105,7 @@ public class backendDeliveryCustomRecyclerView extends RecyclerView.Adapter<back
                     builder.setNeutralButton("Open Box", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            //accessdatabase(titles.get(position).toString());
+                            deliveryfrag.completeDelivery(titles.get(position).toString());
 
                         }
                     });
@@ -105,7 +115,7 @@ public class backendDeliveryCustomRecyclerView extends RecyclerView.Adapter<back
             });
         }
 
- */
+
         }
     }
-}
+
