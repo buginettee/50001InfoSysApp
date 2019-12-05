@@ -47,6 +47,3 @@ public class Login_Main extends AppCompatActivity implements View.OnClickListene
         }
     }
 }
-//ALL FUNCTIONS AND AESTHETICS COMPLETED
-//TODO MAKE LOGS
-//TODO FIX THE IMAGE BUTTON ALIGNMENT IN LAYOUT

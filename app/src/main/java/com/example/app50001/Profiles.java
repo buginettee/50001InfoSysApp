@@ -8,16 +8,16 @@ import java.util.HashMap;
 public class Profiles {
 
     private String DisplayName; //editable
-    public String Email;
+    private String Email;
     private String Address;     //editable
     private String AdditionalInformation;       //editable
-    public String DUID;
-    public String Company;
+    private String DUID;
+    private String Company;
     private HashMap<String, Object> AdminOf;        //editable
     private HashMap<String, Object> GuestOf;        //editable
-    public HashMap<String, Object> DeliveryOf;
-    public HashMap<String, Object> UserHistoryOfProfile;
-    public HashMap<String, Object> DeliveryHistoryOfProfile;
+    private HashMap<String, Object> DeliveryOf;
+    private HashMap<String, Object> UserHistoryOfProfile;
+    private HashMap<String, Object> DeliveryHistoryOfProfile;
 
     //no arg constructor
     public Profiles() {}

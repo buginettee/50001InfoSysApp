@@ -6,30 +6,31 @@ import java.util.HashMap;
 
 public class Boxes {
 
-    public HashMap<String, Object> AdminAccess;
-    public HashMap<String, Object> GuestAccess;
-    public HashMap<String, Object> DeliveryAccess;
-    public String Address;
-    public boolean LockState;
-    public boolean DoorState;
-    public String ButtonState;
-    public String AdditionalInstructions;
+    private HashMap<String, Object> AdminAccess;
+    private HashMap<String, Object> GuestAccess;
+    private HashMap<String, Object> DeliveryAccess;
+    private String Address;
+    private String LockState;
+    private String DoorState;
+    private String ButtonState;
+    private String AdditionalInstructions;
 
-    public Boxes(){}
 
-    public Boxes(HashMap<String, Object> adminAccess,
-                 HashMap<String, Object> guestAccess,
-                 HashMap<String, Object> deliveryAccess,
+
+
+    public Boxes(HashMap<String, Object> AdminAccess,
+                 HashMap<String, Object> GuestAccess,
+                 HashMap<String, Object> DeliveryAccess,
                  String Address,
-                 Boolean LockState,
-                 Boolean DoorState,
+                 String LockState,
+                 String DoorState,
                  String ButtonState,
                  String AdditionalInstructions
                  ){
 
-        this.AdminAccess = adminAccess;
-        this.GuestAccess = guestAccess;
-        this.DeliveryAccess = deliveryAccess;
+        this.AdminAccess = AdminAccess;
+        this.GuestAccess = GuestAccess;
+        this.DeliveryAccess = DeliveryAccess;
         this.Address = Address;
         this.LockState = LockState;
         this.DoorState = DoorState;

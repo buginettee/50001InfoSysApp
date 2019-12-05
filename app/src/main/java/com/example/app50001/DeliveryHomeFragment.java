@@ -28,6 +28,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import org.w3c.dom.Text;
@@ -67,6 +68,7 @@ public class DeliveryHomeFragment extends Fragment {
 
         //get instance of the database
         dbreference = FirebaseDatabase.getInstance().getReference();
+
     }
 
 
@@ -88,14 +90,13 @@ public class DeliveryHomeFragment extends Fragment {
         recycler = (RecyclerView) view.findViewById(R.id.delivery_recycler);
         recycler.setLayoutManager(new LinearLayoutManager(getContext()));
         getdeliveries();
-        adapter = new backendDeliveryCustomRecyclerView(getContext(),boxes,info);
+        adapter = new backendDeliveryCustomRecyclerView(getContext(),boxes,info,this);
         recycler.setAdapter(adapter);
     }
 
     public void getdeliveries(){
         boxes = new ArrayList<String>();
         info = new HashMap<String, List<String>>();
-
 
         dbreference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -123,6 +124,15 @@ public class DeliveryHomeFragment extends Fragment {
 
             }
         });
+    }
+
+    public void completeDelivery(String box){ //given the box that i have chose to complete delivery for,
+        //change box to unlocked, remove from deliveryof, remove from deliveryaccess of box
+
+        dbreference.child("Boxes").child(box).child("ButtonState").setValue("Unlocked");
+        dbreference.child("Profiles").child(currentUID).child("DeliveryOf").removeValue();
+        dbreference.child("Boxes").child(box).child("DeliveryAccess").removeValue();
+
     }
 
 }
