@@ -16,18 +16,27 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         />
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_user_history"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="20dp"
+        android:layout_below="@id/text_User_History"
+        />
+
     <TextView
+        android:id="@+id/invisible_child"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/retrieve_user_history"
-        android:background="@color/colorPrimary"
-        android:layout_marginLeft="20dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="80dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginEnd="20dp"
-        android:text="this will show all the boxes that this particular user has opened before"
+        android:text="if you see this, pardon the shortcut taken"
+        android:visibility="invisible"
         />
+
 
 
 

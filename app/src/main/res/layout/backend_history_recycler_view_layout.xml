@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        >
+
+        <TextView
+            android:id="@+id/recycler_history_title_display"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="hello"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:textSize="15dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.SearchResult.Title"
+            />
+
+        <TextView
+            android:id="@+id/recycler_history_items_display"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="10dp"
+            android:textSize="15dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:text="world"
+            android:layout_below="@+id/recycler_history_title_display"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            />
+    </RelativeLayout>
+</LinearLayout>

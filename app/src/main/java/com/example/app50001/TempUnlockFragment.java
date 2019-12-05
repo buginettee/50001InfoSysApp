@@ -72,10 +72,14 @@ public class TempUnlockFragment extends Fragment {
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         if(dataSnapshot.exists()){
                             //the user is the admin access
-                            boxRef.child(box_id.getText().toString()).child("DoorState").setValue(true);
-                            boxRef.child(box_id.getText().toString()).child("LockState").setValue(false);
+
+                            boxRef.child(box_id.getText().toString()).child("ButtonState").setValue("Unlocked");
+
+                            //boxRef.child(box_id.getText().toString()).child("DoorState").setValue(true);
+                            //boxRef.child(box_id.getText().toString()).child("LockState").setValue(false);
                             Toast.makeText(getContext(),"You have unlocked the box", Toast.LENGTH_SHORT).show();
-                        } else {
+                        }
+                        else {
                             //check if user is on the guestlist
                             Query queryguest = boxRef.child(box_id.getText().toString()).child("GuestAccess").orderByValue().equalTo(uid);
                             queryguest.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -83,8 +87,10 @@ public class TempUnlockFragment extends Fragment {
                                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                     if(dataSnapshot.exists()){
                                         //the user is a guest
-                                        boxRef.child(box_id.getText().toString()).child("DoorState").setValue(true);
-                                        boxRef.child(box_id.getText().toString()).child("LockState").setValue(false);
+                                        boxRef.child(box_id.getText().toString()).child("ButtonState").setValue("Unlocked");
+
+                                        //boxRef.child(box_id.getText().toString()).child("DoorState").setValue(true);
+                                        //boxRef.child(box_id.getText().toString()).child("LockState").setValue(false);
                                         Toast.makeText(getContext(), "You have unlocked the box", Toast.LENGTH_SHORT).show();
                                     } else {
                                         //since the user is neither guest nor admin, no access is granted

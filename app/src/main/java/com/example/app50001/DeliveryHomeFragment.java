@@ -1,10 +1,16 @@
 package com.example.app50001;
 
+import android.app.AlertDialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ExpandableListAdapter;
+import android.widget.ExpandableListView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -12,6 +18,8 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.app50001.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -22,15 +30,28 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import org.w3c.dom.Text;
+
 import java.io.ObjectStreamException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 
 public class DeliveryHomeFragment extends Fragment {
 
     private DatabaseReference dbreference;
     private FirebaseAuth dbauth;
-    private Button DeliveriesToMake;
+
+    private RecyclerView recycler;
+
+    private List<String> boxes;
+    private HashMap<String, List<String>> info; //boxes, <address, addinfo>
+
+    private RecyclerView.Adapter adapter;
+
+    private TextView invisible;
+    private String currentUID;
 
 
     @Override
@@ -42,73 +63,69 @@ public class DeliveryHomeFragment extends Fragment {
 
         //get the current user and its unique ID
         FirebaseUser currentuser = dbauth.getCurrentUser();
-        String currentUID = currentuser.getUid();
+        currentUID = currentuser.getUid();
 
         //get instance of the database
-        dbreference = FirebaseDatabase.getInstance().getReference().child("Profiles").child(currentUID);
-
-        //if you want to add more things under the same children, use a hashmap and .updateChildren method
-        //FOR YOUR REFERENCE
-        // HashMap<String, Object> newdelivery = new HashMap<>();
-        //newdelivery.put("box5", "blk 61");
-        //dbreference.child("DeliveryOf").updateChildren(newdelivery);
+        dbreference = FirebaseDatabase.getInstance().getReference();
     }
-
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_delivery_home, null);
+        View view = inflater.inflate(R.layout.fragment_delivery_home, container, false);
 
-        DeliveriesToMake = (Button) view.findViewById(R.id.delivery1);
+        return view;
+    }
+
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        invisible = (TextView) view.findViewById(R.id.invisible_man);
+
+        recycler = (RecyclerView) view.findViewById(R.id.delivery_recycler);
+        recycler.setLayoutManager(new LinearLayoutManager(getContext()));
+        getdeliveries();
+        adapter = new backendDeliveryCustomRecyclerView(getContext(),boxes,info);
+        recycler.setAdapter(adapter);
+    }
+
+    public void getdeliveries(){
+        boxes = new ArrayList<String>();
+        info = new HashMap<String, List<String>>();
+
 
         dbreference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                //text in the button has to be set empty first to prevent appending problems
-                DeliveriesToMake.setText("");
 
+                for(DataSnapshot datasnap : dataSnapshot.child("Profiles").child(currentUID).child("DeliveryOf").getChildren()) {
 
-                //iterator method if you need to iterate through the multiple keys inside the DeliveryOf child
-                for (DataSnapshot snapshot : dataSnapshot.child("DeliveryOf").getChildren()){
+                    String boxid = datasnap.getKey().toString();
+                    String boxaddress = datasnap.getValue().toString();
 
-                    String string = snapshot.getKey().toString();
-                    DeliveriesToMake.append(string);
-                    DeliveriesToMake.append("\n");
-                    String value = snapshot.getValue().toString();
-                    DeliveriesToMake.append(value);
-                    DeliveriesToMake.append("\n");
+                    boxes.add(boxid);
 
+                    String boxinfo = dataSnapshot.child("Boxes").child(boxid).child("AdditionalInstructions").getValue().toString();
+
+                    List<String> temp = new ArrayList<>();
+                    temp.add(boxaddress);
+                    temp.add(boxinfo);
+                    info.put(boxid,temp);
+
+                    invisible.setText(boxid);
                 }
-
-                //as this is referring to a user profile, retrieve the info from profiles -> deliveryof
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
         });
-
-
-
-        return view;
     }
+
 }
 
 
-
-//HI if you need any references, use DeliverySettingsFragment as your code reference thanks!
-
-//The above space is for you to do your code
-//onCreate for all the variables and reference IDs that you need inside the page
-//onCreateView for all the actual action going on when the person clicks on the page
-//i added one iterator method for you in case you need to iterate through the different nodes inside the DeliveryOf
-//method. Also the format for this display for each delivery should be:
-
-//Box #*****
-//Address: _______
-
-//idk how you are going to make this but goodluck! HAHHAHAA i tried to help abit but idk what to do already
 

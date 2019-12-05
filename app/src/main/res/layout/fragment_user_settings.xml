@@ -91,27 +91,6 @@
         android:textAppearance="@style/TextAppearance.AppCompat"
         />
 
-    <TextView
-        android:id="@+id/user_additionalinfo_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Additional Delivery Information:"
-        android:layout_marginLeft="20dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_below="@+id/user_address_display"
-        />
-
-    <EditText
-        android:id="@+id/user_additionalinfo_display"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="Any additional delivery information/instructions?"
-        android:layout_marginLeft="20dp"
-        android:layout_marginStart="20dp"
-        android:layout_below="@+id/user_additionalinfo_text"
-        android:textAppearance="@style/TextAppearance.AppCompat"
-        />
 
     <Button
         android:id="@+id/user_save_all_settings"
@@ -119,7 +98,7 @@
         android:layout_height="wrap_content"
         android:text="@string/save_setting_changes"
         android:layout_centerHorizontal="true"
-        android:layout_below="@+id/user_additionalinfo_display"
+        android:layout_below="@+id/user_address_display"
         android:layout_marginTop="20dp"
         />
 

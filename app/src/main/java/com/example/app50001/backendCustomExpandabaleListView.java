@@ -71,7 +71,7 @@ public class backendCustomExpandabaleListView extends BaseExpandableListAdapter 
 
         if(convertView == null){
             LayoutInflater inflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(R.layout.backend_list_group,null);
+            convertView = inflater.inflate(R.layout.backend_expandable_list_group,null);
         }
         TextView listheader = (TextView) convertView.findViewById(R.id.list_group);
         listheader.setTypeface(null, Typeface.BOLD);
@@ -87,7 +87,7 @@ public class backendCustomExpandabaleListView extends BaseExpandableListAdapter 
 
         if(convertView == null){
             LayoutInflater inflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(R.layout.backend_list_item,null);
+            convertView = inflater.inflate(R.layout.backend_expandable_list_item,null);
         }
 
         TextView listchild = (TextView) convertView.findViewById(R.id.list_item);

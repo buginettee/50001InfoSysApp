@@ -33,35 +33,35 @@ Code starts:
 
         String email = currentuser.getEmail();
 
-        HashMap<String, Object> adminOf = new HashMap<>();
+        HashMap<String, Object> AdminOf = new HashMap<>();
         adminOf.put("Box32", "Address of Box32");
 
-        HashMap<String, Object> guestOf = new HashMap<>();
+        HashMap<String, Object> GuestOf = new HashMap<>();
         guestOf.put("Box32", "Address of Box32");
 
-        HashMap<String, Object> deliveryOf = new HashMap<>();
+        HashMap<String, Object> DeliveryOf = new HashMap<>();
         deliveryOf.put("Box32", "Address of Box32");
 
         HashMap<String, Object> boxAccessed = new HashMap<>();
         boxAccessed.put("Box10", "Address of Box10");
 
-        HashMap<String, Object> userHistoryOf = new HashMap<>();
+        HashMap<String, Object> UserHistoryOf = new HashMap<>();
         userHistoryOf.put("2019-11-26", boxAccessed);
 
-        HashMap<String, Object> deliveryHistoryOf = new HashMap<>();
+        HashMap<String, Object> DeliveryHistoryOf = new HashMap<>();
         deliveryHistoryOf.put("2019-04-27", boxAccessed);
 
-        userRef.setValue(new Profiles("displayName",
+        userRef.setValue(new Profiles("DisplayName",
                 email,
                 "Address",
                 "Additional Information for Delivery",
                 "Delivery ID if any",
                 "Company Name if any",
-                adminOf,
-                guestOf,
-                deliveryOf,
-                userHistoryOf,
-                deliveryHistoryOf));
+                AdminOf,
+                GuestOf,
+                DeliveryOf,
+                UserHistoryOf,
+                DeliveryHistoryOf));
 
         HashMap<String, Object> newAccess = new HashMap<>();
         newAccess.put("Box18", "new Address");
@@ -103,7 +103,10 @@ Code starts:
                 DeliveryAccess,
                 "Address",
                 true,
-                false
+                false,
+                "Locked",
+                "Fly"
+
         ));
 
 

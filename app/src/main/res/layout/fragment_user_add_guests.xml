@@ -19,7 +19,7 @@
         />
 
     <ExpandableListView
-        android:id="@+id/expandable_list_view"
+        android:id="@+id/expandable_guest_list"
         android:layout_width="match_parent"
         android:layout_height="350dp"
         android:divider="@color/colorPrimary"

@@ -69,8 +69,11 @@ public class ForceLockFragment extends Fragment {
                         if(dataSnapshot.exists()){
 
                             //go to the box id and change its lock and door status?
-                            boxRef.child(box_id.getText().toString()).child("DoorState").setValue(false);
-                            boxRef.child(box_id.getText().toString()).child("LockState").setValue(true);
+                            boxRef.child(box_id.getText().toString()).child("ButtonState").setValue("Locked");
+
+
+                           // boxRef.child(box_id.getText().toString()).child("DoorState").setValue(false);
+                           // boxRef.child(box_id.getText().toString()).child("LockState").setValue(true);
 
                             Toast.makeText(getContext(), "You have successfully locked the box", Toast.LENGTH_SHORT).show();
                         }

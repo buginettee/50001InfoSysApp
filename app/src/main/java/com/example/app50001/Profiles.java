@@ -72,23 +72,23 @@ public class Profiles {
 
 
     public String getDisplayName(){return this.DisplayName;}
-    public void setDisplayName(String displayName){ this.DisplayName = displayName; }
+    public void setDisplayName(String DisplayName){ this.DisplayName = DisplayName; }
 
 
     public String getAddress(){ return this.Address; }
-    public void setAddress(String address ) { this.Address = address; }
+    public void setAddress(String Address ) { this.Address = Address; }
 
 
     public String getAdditionalInformation() {return this.AdditionalInformation;}
-    public void setAdditionalInformation(String additionalInformation) {this.AdditionalInformation = additionalInformation;}
+    public void setAdditionalInformation(String AdditionalInformation) {this.AdditionalInformation = AdditionalInformation;}
 
 
     public HashMap<String, Object> getAdminOf(){ return this.AdminOf; }
-    public void setAdminOf(HashMap<String, Object> adminOf) { this.AdminOf = adminOf; }
+    public void setAdminOf(HashMap<String, Object> AdminOf) { this.AdminOf = AdminOf; }
 
 
     public HashMap<String, Object> getGuestOf(){ return this.GuestOf; }
-    public void setGuestOf(HashMap<String, Object> guestOf) { this.GuestOf = guestOf; }
+    public void setGuestOf(HashMap<String, Object> GuestOf) { this.GuestOf = GuestOf; }
 
 
 }

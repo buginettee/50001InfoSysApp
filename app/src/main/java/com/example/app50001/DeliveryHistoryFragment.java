@@ -9,6 +9,8 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -18,11 +20,23 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
 public class DeliveryHistoryFragment extends Fragment {
 
+    private DatabaseReference userreference;
     private FirebaseAuth dbauth;
-    private DatabaseReference dbreference;
-    private TextView deliveryAccessHistory;
+
+    private List<String> deliverydates;
+    private HashMap<String,List<String>> deliverydetails;
+
+    private RecyclerView recyclerView;
+    private RecyclerView.Adapter adapter;
+
+    private TextView invisiblewoman;
+    private String currentUID;
 
 
     @Override
@@ -34,60 +48,75 @@ public class DeliveryHistoryFragment extends Fragment {
 
         //get the current user and its unique ID
         FirebaseUser currentuser = dbauth.getCurrentUser();
-        String currentUID = currentuser.getUid();
+        currentUID = currentuser.getUid();
 
         //get instance of the database
-        dbreference = FirebaseDatabase.getInstance().getReference().child("Profiles").child(currentUID);
-
+        userreference = FirebaseDatabase.getInstance().getReference().child("Profiles").child(currentUID);
 
     }
+
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_delivery_history, null);
+        View view = inflater.inflate(R.layout.fragment_delivery_history, container, false);
 
-        deliveryAccessHistory = (TextView) view.findViewById(R.id.retrieve_delivery_history);
+        return view;
+    }
 
-        dbreference.addValueEventListener(new ValueEventListener() {
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        invisiblewoman = (TextView) view.findViewById(R.id.invisible_woman);
+
+        recyclerView = (RecyclerView) view.findViewById(R.id.recycler_delivery_history);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        getdeliveries();
+        adapter = new backendHistoryCustomRecyclerView(getContext(), deliverydates,deliverydetails);
+        recyclerView.setAdapter(adapter);
+
+
+
+    }
+
+    public void getdeliveries(){
+        deliverydates = new ArrayList<String>();
+        deliverydetails = new HashMap<String, List<String>>();
+
+
+        userreference.child("DeliveryHistoryOfProfile").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                deliveryAccessHistory.setText("");
+                for(DataSnapshot datasnap : dataSnapshot.getChildren()){
 
+                    String dates = datasnap.getKey().toString();
 
-                //access only the DeliveryHistoryOfProfile
-                for(DataSnapshot snapshot : dataSnapshot.child("DeliveryHistoryOfProfile").getChildren()){
-                    String date = snapshot.getKey().toString();
-                    deliveryAccessHistory.append(date);
-                    deliveryAccessHistory.append("\n");
-                    for(DataSnapshot snapshotchild : snapshot.getChildren()){
-                        String accessedbox = snapshotchild.getKey().toString();
-                        deliveryAccessHistory.append(accessedbox);
-                        deliveryAccessHistory.append("\n");
-                        String accessedaddress = snapshotchild.getValue().toString();
-                        deliveryAccessHistory.append(accessedaddress);
-                        deliveryAccessHistory.append("\n");
+                    deliverydates.add(dates);
+
+                    for(DataSnapshot snap : dataSnapshot.child(dates).getChildren()){
+
+                        String box = snap.getKey().toString();
+                        String address = snap.getValue().toString();
+
+                        List<String> detaillist = new ArrayList<>();
+                        detaillist.add(box + "\n" + address);
+                        deliverydetails.put(dates, detaillist);
+
                     }
+                    invisiblewoman.setText(dates);
+
                 }
-
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
         });
-
-        return view;
     }
+
 }
 
-
-//HI i used the same iterator again up there in case you need some form of method iteration
-//feel free to delete if the recycler view works without it
-
-//for delivery, it will only access DeliveryHistoryOfProfile (you need to look at the database for the correct name
-//if not the database will create a new branch which is fking stupid (delete it if you created extras)
 
 
