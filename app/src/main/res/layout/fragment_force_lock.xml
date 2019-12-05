@@ -3,7 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ForceLockFragment">
+    tools:context=".ForceLockFragment"
+    android:background="@color/colorPrimary">
+    >
 
     <TextView
         android:id="@+id/force_lock_title"
@@ -12,7 +14,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="25dp"
         android:textAlignment="center"
-        android:textSize="20sp"
+        android:textSize="40sp"
         android:text="Force Lock"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         />
@@ -25,7 +27,8 @@
         android:layout_marginLeft="20dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
-        android:layout_below="@+id/force_lock_title"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
         />
 
     <EditText
@@ -37,6 +40,7 @@
         android:layout_marginStart="20dp"
         android:textAppearance="@style/TextAppearance.AppCompat"
         android:layout_below="@id/to_force_lock_text"
+        android:layout_centerHorizontal="true"
         />
 
 
@@ -46,8 +50,8 @@
         android:layout_height="wrap_content"
         android:text="@string/save_setting_changes"
         android:layout_centerHorizontal="true"
-        android:layout_below="@+id/to_force_lock_display"
-        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_alignParentBottom="true"
         />
 
 
