@@ -3,7 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/delivery_history">
+    android:id="@+id/delivery_history"
+    android:background="@color/colorPrimary">
+    >
 
     <TextView
         android:id="@+id/text_Delivery_History"
@@ -12,7 +14,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="25dp"
         android:textAlignment="center"
-        android:textSize="20dp"
+        android:textSize="40dp"
         android:text="@string/delivery_history_title"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         />
