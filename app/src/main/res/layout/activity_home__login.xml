@@ -8,9 +8,9 @@
 
 
     <TextView
+        android:id="@+id/HomeLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/HomeLogin"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:text="Home Login"
@@ -19,19 +19,19 @@
         />
 
     <EditText
+        android:id="@+id/HomeUsername"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/HomeUsername"
-        android:hint="Username"
+        android:hint="Email"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/HomeLogin"
-        android:inputType="textPersonName"
+        android:inputType="textEmailAddress"
         />
 
     <EditText
+        android:id="@+id/HomePassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/HomePassword"
         android:hint="Password"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/HomeUsername"
@@ -40,27 +40,27 @@
 
 
     <Button
+        android:id="@+id/BtnHomeLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/BtnHomeLogin"
         android:layout_below="@id/HomePassword"
         android:layout_centerHorizontal="true"
         android:text="Login"
         />
 
     <Button
+        android:id="@+id/BtnHomeRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/BtnHomeRegister"
         android:layout_below="@id/BtnHomeLogin"
         android:layout_centerHorizontal="true"
         android:text="Register"
         />
 
     <Button
+        android:id="@+id/BackBtnHome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/BackBtnHome"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/BtnHomeRegister"
         android:text="Back"

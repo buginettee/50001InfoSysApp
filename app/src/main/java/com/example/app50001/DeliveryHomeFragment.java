@@ -1,6 +1,8 @@
 package com.example.app50001;
 
 import android.app.AlertDialog;
+import android.nfc.cardemulation.HostApduService;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +17,7 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
@@ -34,6 +37,7 @@ import com.google.firebase.database.ValueEventListener;
 import org.w3c.dom.Text;
 
 import java.io.ObjectStreamException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -55,6 +59,7 @@ public class DeliveryHomeFragment extends Fragment {
     private String currentUID;
 
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,6 +73,7 @@ public class DeliveryHomeFragment extends Fragment {
 
         //get instance of the database
         dbreference = FirebaseDatabase.getInstance().getReference();
+
 
     }
 

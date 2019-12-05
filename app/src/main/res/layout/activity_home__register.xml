@@ -38,37 +38,28 @@
         />
 
     <EditText
+        android:id="@+id/RegisterDisplayName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/RegisterDisplayName"
         android:hint="Display Name"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/RegisterPassword"
         android:inputType="textPersonName"
         />
 
-    <EditText
-        android:id="@+id/RegisterAddress"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="Address"
-        android:layout_below="@+id/RegisterDisplayName"
-        android:layout_centerHorizontal="true"
-        />
-
     <Button
+        android:id="@+id/BtnRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/BtnRegister"
-        android:layout_below="@id/RegisterAddress"
+        android:layout_below="@id/RegisterDisplayName"
         android:layout_centerHorizontal="true"
         android:text="Register"
         />
 
     <Button
+        android:id="@+id/BackBtnRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/BackBtnRegister"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/BtnRegister"
         android:text="Back"

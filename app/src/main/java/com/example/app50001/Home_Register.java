@@ -31,7 +31,6 @@ public class Home_Register extends AppCompatActivity implements View.OnClickList
     private EditText RegisterUsername;
     private EditText RegisterPassword;
     private EditText RegisterDisplayName;
-    private EditText RegisterAddress;
 
     private FirebaseAuth mAuth;
     private DatabaseReference mUser;
@@ -48,7 +47,6 @@ public class Home_Register extends AppCompatActivity implements View.OnClickList
         RegisterUsername = findViewById(R.id.RegisterUsername);
         RegisterPassword = findViewById(R.id.RegisterPassword);
         RegisterDisplayName = findViewById(R.id.RegisterDisplayName);
-        RegisterAddress = findViewById(R.id.RegisterAddress);
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -77,7 +75,6 @@ public class Home_Register extends AppCompatActivity implements View.OnClickList
         final String registerUsername = RegisterUsername.getText().toString();
         String registerPassword = RegisterPassword.getText().toString();
         final String registerDisplayName = RegisterDisplayName.getText().toString();
-        final String registerAddress = RegisterAddress.getText().toString();
         final HashMap<String, Object> emptyhashmap = new HashMap<>();
 
         if(!registerUsername.isEmpty() && !registerPassword.isEmpty()){
@@ -91,9 +88,16 @@ public class Home_Register extends AppCompatActivity implements View.OnClickList
                         String newUID = newuser.getUid().toString();
 
                         //creating the new account
-                        mUser.child(newUID).setValue(new Profiles(registerDisplayName,registerUsername,registerAddress,
-                                "","","", emptyhashmap,emptyhashmap,emptyhashmap,emptyhashmap,emptyhashmap));
+                        Profiles newprofile = new Profiles();
+                        newprofile.setEmail(registerUsername);
+                        newprofile.setDisplayName(registerDisplayName);
+                        newprofile.setAdminOf(emptyhashmap);
+                        newprofile.setGuestOf(emptyhashmap);
+                        newprofile.setDeliveryOf(emptyhashmap);
+                        newprofile.setUserHistoryOfProfile(emptyhashmap);
+                        newprofile.setDeliveryHistoryOfProfile(emptyhashmap);
 
+                        mUser.child(newUID).setValue(newprofile);
 
                         Toast.makeText(Home_Register.this, "Registration successful! Please login again.", Toast.LENGTH_SHORT).show();
 
@@ -103,7 +107,7 @@ public class Home_Register extends AppCompatActivity implements View.OnClickList
 
                     }
                     else {
-                        Toast.makeText(Home_Register.this, "Registration Unsuccessful. Please try again.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Home_Register.this, "Unsuccessful. Please try again by using a valid email and more than 8 character long password.", Toast.LENGTH_LONG).show();
                         Intent stayonpage = new Intent(Home_Register.this, Home_Register.class);
                         startActivity(stayonpage);
                     }
@@ -111,17 +115,11 @@ public class Home_Register extends AppCompatActivity implements View.OnClickList
             });
         }
         else {
-            Toast.makeText(Home_Register.this, "Please fill in all the fields", Toast.LENGTH_LONG).show();
+            Toast.makeText(Home_Register.this, "Please fill in all the fields.", Toast.LENGTH_LONG).show();
         }
     }
 
 
 }
 
-
-//DONE
-//CAN REGISTER PROPERLY AND CREATING A NEW BRANCH INSIDE THE DATABASE
-
-
-//WHEN the user registers, there will be no history or access to anything
-//initialise this separately inside the home pages
+//COMPLETED

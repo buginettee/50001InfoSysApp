@@ -9,8 +9,6 @@ public class Profiles {
 
     private String DisplayName; //editable
     private String Email;
-    private String Address;     //editable
-    private String AdditionalInformation;       //editable
     private String DUID;
     private String Company;
     private HashMap<String, Object> AdminOf;        //editable
@@ -22,76 +20,49 @@ public class Profiles {
     //no arg constructor
     public Profiles() {}
 
-    //args constructor
-    public Profiles(String DisplayName,
-                    String Email,
-                    String Address,
-                    String AdditionalInformation,
-                    String DUID,
-                    String Company,
-                    HashMap<String, Object> AdminOf,
-                    HashMap<String, Object> GuestOf,
-                    HashMap<String, Object> DeliveryOf,
-                    HashMap<String, Object> AccessHistoryOfProfile,
-                    HashMap<String, Object> DeliveryHistoryOfProfile){
+    //all getter and setter methods
+    public String getDisplayName() { return DisplayName; }
+    public void setDisplayName(String DisplayName) { this.DisplayName = DisplayName; }
 
-        setDisplayName(DisplayName);
-        this.Email = Email;
-        setAddress(Address);
-        setAdditionalInformation(AdditionalInformation);
-        this.DUID = DUID;
-        this.Company = Company;
-        setAdminOf(AdminOf);
-        setGuestOf(GuestOf);
-        this.DeliveryOf = DeliveryOf;
-        this.UserHistoryOfProfile = AccessHistoryOfProfile;
-        this.DeliveryHistoryOfProfile = DeliveryHistoryOfProfile;
+
+    public String getEmail() { return Email; }
+    public void setEmail(String Email) {  this.Email = Email;  }
+
+
+    public String getDUID() {  return DUID; }
+    public void setDUID(String DUID) { this.DUID = DUID; }
+
+
+    public String getCompany() {  return Company; }
+    public void setCompany(String Company) {  this.Company = Company; }
+
+
+    public HashMap<String, Object> getAdminOf() { return AdminOf;  }
+    public void setAdminOf(HashMap<String, Object> AdminOf) {  this.AdminOf = AdminOf; }
+
+
+    public HashMap<String, Object> getGuestOf() {return GuestOf;}
+    public void setGuestOf(HashMap<String, Object> GuestOf) { this.GuestOf = GuestOf;}
+
+
+    public HashMap<String, Object> getDeliveryOf() { return DeliveryOf; }
+    public void setDeliveryOf(HashMap<String, Object> DeliveryOf) {this.DeliveryOf = DeliveryOf; }
+
+
+    public HashMap<String, Object> getUserHistoryOfProfile() {return UserHistoryOfProfile;}
+    public void setUserHistoryOfProfile(HashMap<String, Object> UserHistoryOfProfile) {
+        this.UserHistoryOfProfile = UserHistoryOfProfile;
     }
 
-    //user profile creation
-    public Profiles (String DisplayName, String Email, String Address, String AdditionalInformation,
-                     HashMap<String, Object> AdminOf, HashMap<String, Object> GuestOf){
-        setDisplayName(DisplayName);
-        this.Email = Email;
-        setAddress(Address);
-        setAdditionalInformation(AdditionalInformation);
-        setAdminOf(AdminOf);
-        setGuestOf(GuestOf);
+    public HashMap<String, Object> getDeliveryHistoryOfProfile() {
+        return DeliveryHistoryOfProfile;
     }
 
-    //delivery profile creation
-    public Profiles (String DisplayName, String Email, String DUID, String Company, HashMap<String, Object> DeliveryOf){
-        setDisplayName(DisplayName);
-        this.Email = Email;
-        this.DUID = DUID;
-        this.Company = Company;
-        this.DeliveryOf = DeliveryOf;
+    public void setDeliveryHistoryOfProfile(HashMap<String, Object> deliveryHistoryOfProfile) {
+        DeliveryHistoryOfProfile = deliveryHistoryOfProfile;
     }
-
-
-
-
-    public String getDisplayName(){return this.DisplayName;}
-    public void setDisplayName(String DisplayName){ this.DisplayName = DisplayName; }
-
-
-    public String getAddress(){ return this.Address; }
-    public void setAddress(String Address ) { this.Address = Address; }
-
-
-    public String getAdditionalInformation() {return this.AdditionalInformation;}
-    public void setAdditionalInformation(String AdditionalInformation) {this.AdditionalInformation = AdditionalInformation;}
-
-
-    public HashMap<String, Object> getAdminOf(){ return this.AdminOf; }
-    public void setAdminOf(HashMap<String, Object> AdminOf) { this.AdminOf = AdminOf; }
-
-
-    public HashMap<String, Object> getGuestOf(){ return this.GuestOf; }
-    public void setGuestOf(HashMap<String, Object> GuestOf) { this.GuestOf = GuestOf; }
-
-
 }
 
+//COMPLETED
 
 

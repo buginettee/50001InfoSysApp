@@ -16,111 +16,152 @@ Code starts:
     private DatabaseReference dbreference;
     private FirebaseAuth dbauth;
 
+
+    //for box and pure user
     @RequiresApi(api = Build.VERSION_CODES.O)
-    public void onCreate(Bundle savedInstanceState) {
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //calling instances of auth and reference
+        //get auth from firebase
         dbauth = FirebaseAuth.getInstance();
+
+        //get the current user and its unique ID
+        FirebaseUser currentuser = dbauth.getCurrentUser();
+        currentUID = currentuser.getUid();
+
+        //get instance of the database
         dbreference = FirebaseDatabase.getInstance().getReference();
 
 
-        //if you want to add a complete profile with all attributes available (users)
-        FirebaseUser currentuser = dbauth.getCurrentUser();
-        String currentUID = currentuser.getUid();
+        //database update start!!
 
-        DatabaseReference userRef = dbreference.child("Profiles").child(currentUID);
 
-        String email = currentuser.getEmail();
+        Profiles newProfiles = new Profiles();
+        newProfiles.setDisplayName("Jeslyn");
+        newProfiles.setCompany("SUTD");
+        newProfiles.setDUID("1003841");
+        newProfiles.setEmail("jeslyn_peh@mymail.sutd.edu.sg");
 
         HashMap<String, Object> AdminOf = new HashMap<>();
-        adminOf.put("Box32", "Address of Box32");
+        AdminOf.put("Box32","Blk57 SUTD");
+        newProfiles.setAdminOf(AdminOf);
 
         HashMap<String, Object> GuestOf = new HashMap<>();
-        guestOf.put("Box32", "Address of Box32");
+        GuestOf.put("Box55", "Blk59 SUTD");
+        newProfiles.setGuestOf(GuestOf);
 
         HashMap<String, Object> DeliveryOf = new HashMap<>();
-        deliveryOf.put("Box32", "Address of Box32");
+        newProfiles.setDeliveryOf(DeliveryOf);
 
-        HashMap<String, Object> boxAccessed = new HashMap<>();
-        boxAccessed.put("Box10", "Address of Box10");
-
-        HashMap<String, Object> UserHistoryOf = new HashMap<>();
-        userHistoryOf.put("2019-11-26", boxAccessed);
-
-        HashMap<String, Object> DeliveryHistoryOf = new HashMap<>();
-        deliveryHistoryOf.put("2019-04-27", boxAccessed);
-
-        userRef.setValue(new Profiles("DisplayName",
-                email,
-                "Address",
-                "Additional Information for Delivery",
-                "Delivery ID if any",
-                "Company Name if any",
-                AdminOf,
-                GuestOf,
-                DeliveryOf,
-                UserHistoryOf,
-                DeliveryHistoryOf));
-
-        HashMap<String, Object> newAccess = new HashMap<>();
-        newAccess.put("Box18", "new Address");
-
+        HashMap<String, Object> boxaccessed = new HashMap<>();
+        boxaccessed.put("Box32", "Blk57");
         LocalDate date = java.time.LocalDate.now();
+        String datenow = date.toString();
+        HashMap<String, Object> UserHistoryOfProfile = new HashMap<>();
+        UserHistoryOfProfile.put(datenow, boxaccessed);
 
-        userRef.child("AdminOf").updateChildren(newAccess);
+        HashMap<String, Object> DeliveryHistoryOfProfile = new HashMap<>();
+        newProfiles.setDeliveryHistoryOfProfile(DeliveryHistoryOfProfile);
 
-        userRef.child("GuestOf").updateChildren(newAccess);
+        dbreference.child("Profiles").child(currentUID).setValue(newProfiles);
 
-        userRef.child("DeliveryOf").updateChildren(newAccess);
+        Boxes newbox = new Boxes();
+        newbox.setAddress("Blk57");
+        newbox.setLockState("locked");
+        newbox.setDoorState("locked");
+        newbox.setButtonState("Locked");
+        newbox.setAdditionalInstructions("Fly");
+        newbox.setContact("1234 5678");
 
-        userRef.child("AccessHistoryOfProfile").child(date.toString()).updateChildren(newAccess);
+        HashMap<String, Object> AdminAccess = new HashMap<>();
+        AdminAccess.put("Jeslyn", currentUID);
+        newbox.setAdminAccess(AdminAccess);
 
-        userRef.child("DeliveryHistoryOfProfile").child(date.toString()).updateChildren(newAccess);
+        HashMap<String, Object> GuestAccess = new HashMap<>();
+        GuestAccess.put("Jeslyn2", currentUID);
+        newbox.setGuestAccess(GuestAccess);
+
+        HashMap<String, Object> DeliveryAccess = new HashMap<>();
+        newbox.setDeliveryAccess(DeliveryAccess);
+
+        dbreference.child("Boxes").child("Box32").setValue(newbox);
 
 
-        //if you want to add a new box
 
+        //for mixed
+            @RequiresApi(api = Build.VERSION_CODES.O)
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        //get auth from firebase
         dbauth = FirebaseAuth.getInstance();
+
+        //get the current user and its unique ID
+        FirebaseUser currentuser = dbauth.getCurrentUser();
+        currentUID = currentuser.getUid();
+
+        //get instance of the database
         dbreference = FirebaseDatabase.getInstance().getReference();
 
 
-        DatabaseReference boxRef = dbreference.child("Boxes");
+        //database update start!!
 
-        String BoxNo = "Box32";
+
+        Profiles newProfiles = new Profiles();
+        newProfiles.setDisplayName("NotJeslyn");
+        newProfiles.setCompany("SUTD");
+        newProfiles.setDUID("1004138");
+        newProfiles.setEmail("jeslyn_peh@mymail.sutd.edu.sg");
+
+        HashMap<String, Object> AdminOf = new HashMap<>();
+        AdminOf.put("Box58","Blk57 SUTD");
+        newProfiles.setAdminOf(AdminOf);
+
+        HashMap<String, Object> GuestOf = new HashMap<>();
+        GuestOf.put("Box32", "Blk59 SUTD");
+        newProfiles.setGuestOf(GuestOf);
+
+        HashMap<String, Object> DeliveryOf = new HashMap<>();
+        DeliveryOf.put("Box32", "Blk57");
+        newProfiles.setDeliveryOf(DeliveryOf);
+
+        HashMap<String, Object> boxaccessed = new HashMap<>();
+        boxaccessed.put("Box32", "Blk57");
+        LocalDate date = java.time.LocalDate.now();
+        String datenow = date.toString();
+
+        HashMap<String, Object> UserHistoryOfProfile = new HashMap<>();
+        UserHistoryOfProfile.put(datenow, boxaccessed);
+
+        HashMap<String, Object> DeliveryHistoryOfProfile = new HashMap<>();
+        newProfiles.setDeliveryHistoryOfProfile(DeliveryHistoryOfProfile);
+
+        dbreference.child("Profiles").child(currentUID).setValue(newProfiles);
+
+        Boxes newbox = new Boxes();
+        newbox.setAddress("Blk57");
+        newbox.setLockState("locked");
+        newbox.setDoorState("locked");
+        newbox.setButtonState("Locked");
+        newbox.setAdditionalInstructions("Fly");
+        newbox.setContact("1234 5678");
 
         HashMap<String, Object> AdminAccess = new HashMap<>();
-        AdminAccess.put("DisplayName", "UID generated by FireBase");
+        AdminAccess.put("NotJeslyn", currentUID);
+        newbox.setAdminAccess(AdminAccess);
 
         HashMap<String, Object> GuestAccess = new HashMap<>();
-        GuestAccess.put("DisplayName", "UID generated by FireBase");
+        GuestAccess.put("Jeslyn8", currentUID);
+        newbox.setGuestAccess(GuestAccess);
 
         HashMap<String, Object> DeliveryAccess = new HashMap<>();
-        DeliveryAccess.put("DUID", "UID generated by FireBase");
+        newbox.setDeliveryAccess(DeliveryAccess);
 
-        boxRef.child(BoxNo).setValue(new Boxes(AdminAccess,
-                GuestAccess,
-                DeliveryAccess,
-                "Address",
-                true,
-                false,
-                "Locked",
-                "Fly"
-
-        ));
+        dbreference.child("Boxes").child("Box58").setValue(newbox);
 
 
-        HashMap<String, Object> NewAccess = new HashMap<>();
-        NewAccess.put("DisplayName", "New UID");
 
-        HashMap<String, Object> NewDeliveryAccess = new HashMap<>();
-        NewDeliveryAccess.put("DUID", "New UID");
-
-
-        boxRef.child(BoxNo).child("AdminAccess").updateChildren(NewAccess);
-
-        boxRef.child(BoxNo).child("GuestAccess").updateChildren(NewAccess);
-
-        boxRef.child(BoxNo).child("DeliveryAccess").updateChildren(NewDeliveryAccess);
 
  */

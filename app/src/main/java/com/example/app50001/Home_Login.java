@@ -37,7 +37,6 @@ public class Home_Login extends AppCompatActivity {
         HomePassword = findViewById(R.id.HomePassword);
 
 
-
         BtnHomeLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -49,7 +48,7 @@ public class Home_Login extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent registerUser = new Intent(Home_Login.this, Home_Register.class);
-                Toast.makeText(Home_Login.this, "Entering Register", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Home_Login.this, "Entering Register Page.", Toast.LENGTH_SHORT).show();
                 startActivity(registerUser);
             }
         });
@@ -59,12 +58,10 @@ public class Home_Login extends AppCompatActivity {
             public void onClick(View v) {
 
                 Intent backtoLoginMainUser = new Intent(Home_Login.this, Login_Main.class);
+                Toast.makeText(Home_Login.this, "Returning", Toast.LENGTH_SHORT).show();
                 startActivity(backtoLoginMainUser);
             }
         });
-
-
-
 
         UserFBAuth = FirebaseAuth.getInstance();
     }
@@ -79,20 +76,20 @@ public class Home_Login extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()){
-                        Toast.makeText(Home_Login.this, "Login Successful", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Home_Login.this, "Login Successful.", Toast.LENGTH_SHORT).show();
 
                         Intent HomeLoginIntent = new Intent(Home_Login.this, backend_User_Home.class);
                         startActivity(HomeLoginIntent);
                     }
                     else {
-                        Toast.makeText(Home_Login.this, "Login Unsuccessful. Please try again.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Home_Login.this, "Login Unsuccessful. Ensure that you have entered your email and password properly.", Toast.LENGTH_SHORT).show();
                     }
                 }
             });
         } else {
-            Toast.makeText(Home_Login.this, "Please fill up all the fields", Toast.LENGTH_LONG).show();
+            Toast.makeText(Home_Login.this, "Please fill up all the fields.", Toast.LENGTH_LONG).show();
         }
     }
 }
 
-//DONE
+//COMPLETED

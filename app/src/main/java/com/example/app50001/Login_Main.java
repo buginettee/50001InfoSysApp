@@ -33,17 +33,19 @@ public class Login_Main extends AppCompatActivity implements View.OnClickListene
     public void onClick(View view){
         switch (view.getId()){
             case R.id.HomeChoice:
-                Toast.makeText(Login_Main.this, "Entering User Login", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Login_Main.this, "Entering User Login...", Toast.LENGTH_SHORT).show();
                 Intent intentUserLogin = new Intent(Login_Main.this, Home_Login.class);
                 startActivity(intentUserLogin);
                 break;
 
 
             case R.id.DeliveryChoice:
-                Toast.makeText(Login_Main.this, "Entering Delivery Login", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Login_Main.this, "Entering Delivery Login...", Toast.LENGTH_SHORT).show();
                 Intent intentDeliveryLogin = new Intent(Login_Main.this, Delivery_Login.class);
                 startActivity(intentDeliveryLogin);
                 break;
         }
     }
 }
+
+//COMPLETED

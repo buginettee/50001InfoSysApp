@@ -65,17 +65,14 @@ public class Delivery_Login extends AppCompatActivity implements View.OnClickLis
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()){
-                        Toast.makeText(Delivery_Login.this, "Login Successful", Toast.LENGTH_SHORT).show();
-                        Log.d("Delivery Login", "Delivery Login Successful");
-
+                        Toast.makeText(Delivery_Login.this, "Login Successful.", Toast.LENGTH_SHORT).show();
 
                         Intent DeliveryLoginIntent = new Intent(Delivery_Login.this, backend_Delivery_Home.class);
                         startActivity(DeliveryLoginIntent);
 
                     }
                     else {
-                        Toast.makeText(Delivery_Login.this, "Login Unsuccessful. Please try again.", Toast.LENGTH_SHORT).show();
-                        Log.d("Delivery Login", "Delivery Login Unsuccessful");
+                        Toast.makeText(Delivery_Login.this, "Login Unsuccessful. Please ensure that you have entered your email and password properly.", Toast.LENGTH_SHORT).show();
 
                         //HOW TO STAY ON THE PAGE IF THE LOGIN DETAILS ARE WRONG??
 
@@ -83,13 +80,11 @@ public class Delivery_Login extends AppCompatActivity implements View.OnClickLis
                 }
             });
         } else {
-            Toast.makeText(Delivery_Login.this, "Please fill up all the fields", Toast.LENGTH_LONG).show();
+            Toast.makeText(Delivery_Login.this, "Please fill up all the fields.", Toast.LENGTH_LONG).show();
 
         }
     }
 }
 
 
-//DONE
-
-//TODO LOGIN LOADING PROGRESS DIALOG
+//COMPLETED

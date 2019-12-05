@@ -19,19 +19,19 @@
         />
 
     <EditText
+        android:id="@+id/DeliveryUsername"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/DeliveryUsername"
-        android:hint="Username"
+        android:hint="Email"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/DeliveryLogin"
         android:inputType="textPersonName"
         />
 
     <EditText
+        android:id="@+id/DeliveryPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/DeliveryPassword"
         android:hint="Password"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/DeliveryUsername"
@@ -40,18 +40,18 @@
 
 
     <Button
+        android:id="@+id/BtnDeliveryLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/BtnDeliveryLogin"
         android:layout_below="@id/DeliveryPassword"
         android:layout_centerHorizontal="true"
         android:text="Login"
         />
 
     <Button
+        android:id="@+id/BackBtnDelivery"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/BackBtnDelivery"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/BtnDeliveryLogin"
         android:text="Back"
