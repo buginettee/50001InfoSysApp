@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:id="@+id/delivery_settings"
     android:background="@color/colorPrimary">
-    >
+
 
     <TextView
         android:id="@+id/text_Delivery_Settings"
