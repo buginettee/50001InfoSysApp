@@ -34,6 +34,7 @@ Code starts:
         dbreference = FirebaseDatabase.getInstance().getReference();
 
 
+
         //database update start!!
 
 
@@ -44,24 +45,32 @@ Code starts:
         newProfiles.setEmail("jeslyn_peh@mymail.sutd.edu.sg");
 
         HashMap<String, Object> AdminOf = new HashMap<>();
-        AdminOf.put("Box32","Blk57 SUTD");
+        AdminOf.put("first entry", "first entry");
+        AdminOf.put("Box32", "Blk57 SUTD");
         newProfiles.setAdminOf(AdminOf);
 
         HashMap<String, Object> GuestOf = new HashMap<>();
+        GuestOf.put("first entry", "first entry");
         GuestOf.put("Box55", "Blk59 SUTD");
         newProfiles.setGuestOf(GuestOf);
 
         HashMap<String, Object> DeliveryOf = new HashMap<>();
+        DeliveryOf.put("first entry", "first entry");
         newProfiles.setDeliveryOf(DeliveryOf);
 
         HashMap<String, Object> boxaccessed = new HashMap<>();
+        boxaccessed.put("first entry", "first entry");
         boxaccessed.put("Box32", "Blk57");
         LocalDate date = java.time.LocalDate.now();
         String datenow = date.toString();
         HashMap<String, Object> UserHistoryOfProfile = new HashMap<>();
         UserHistoryOfProfile.put(datenow, boxaccessed);
+        newProfiles.setUserHistoryOfProfile(UserHistoryOfProfile);
 
+        HashMap<String, Object> accessed = new HashMap<>();
+        accessed.put("first entry", "first entry");
         HashMap<String, Object> DeliveryHistoryOfProfile = new HashMap<>();
+        DeliveryHistoryOfProfile.put(datenow,accessed);
         newProfiles.setDeliveryHistoryOfProfile(DeliveryHistoryOfProfile);
 
         dbreference.child("Profiles").child(currentUID).setValue(newProfiles);
@@ -75,14 +84,17 @@ Code starts:
         newbox.setContact("1234 5678");
 
         HashMap<String, Object> AdminAccess = new HashMap<>();
+        AdminAccess.put("first entry", "first entry");
         AdminAccess.put("Jeslyn", currentUID);
         newbox.setAdminAccess(AdminAccess);
 
         HashMap<String, Object> GuestAccess = new HashMap<>();
+        GuestAccess.put("first entry", "first entry");
         GuestAccess.put("Jeslyn2", currentUID);
         newbox.setGuestAccess(GuestAccess);
 
         HashMap<String, Object> DeliveryAccess = new HashMap<>();
+        DeliveryAccess.put("first entry", "first entry");
         newbox.setDeliveryAccess(DeliveryAccess);
 
         dbreference.child("Boxes").child("Box32").setValue(newbox);
@@ -106,7 +118,7 @@ Code starts:
         dbreference = FirebaseDatabase.getInstance().getReference();
 
 
-        //database update start!!
+                //database update start!!
 
 
         Profiles newProfiles = new Profiles();
@@ -116,18 +128,22 @@ Code starts:
         newProfiles.setEmail("jeslyn_peh@mymail.sutd.edu.sg");
 
         HashMap<String, Object> AdminOf = new HashMap<>();
+        AdminOf.put("first entry", "first entry");
         AdminOf.put("Box58","Blk57 SUTD");
         newProfiles.setAdminOf(AdminOf);
 
         HashMap<String, Object> GuestOf = new HashMap<>();
+        GuestOf.put("first entry", "first entry");
         GuestOf.put("Box32", "Blk59 SUTD");
         newProfiles.setGuestOf(GuestOf);
 
         HashMap<String, Object> DeliveryOf = new HashMap<>();
+        DeliveryOf.put("first entry", "first entry");
         DeliveryOf.put("Box32", "Blk57");
         newProfiles.setDeliveryOf(DeliveryOf);
 
         HashMap<String, Object> boxaccessed = new HashMap<>();
+        boxaccessed.put("first entry", "first entry");
         boxaccessed.put("Box32", "Blk57");
         LocalDate date = java.time.LocalDate.now();
         String datenow = date.toString();
@@ -136,6 +152,7 @@ Code starts:
         UserHistoryOfProfile.put(datenow, boxaccessed);
 
         HashMap<String, Object> DeliveryHistoryOfProfile = new HashMap<>();
+        DeliveryHistoryOfProfile.put(datenow,boxaccessed);
         newProfiles.setDeliveryHistoryOfProfile(DeliveryHistoryOfProfile);
 
         dbreference.child("Profiles").child(currentUID).setValue(newProfiles);
@@ -149,18 +166,20 @@ Code starts:
         newbox.setContact("1234 5678");
 
         HashMap<String, Object> AdminAccess = new HashMap<>();
+        AdminAccess.put("first entry", "first entry");
         AdminAccess.put("NotJeslyn", currentUID);
         newbox.setAdminAccess(AdminAccess);
 
         HashMap<String, Object> GuestAccess = new HashMap<>();
+        GuestAccess.put("first entry", "first entry");
         GuestAccess.put("Jeslyn8", currentUID);
         newbox.setGuestAccess(GuestAccess);
 
         HashMap<String, Object> DeliveryAccess = new HashMap<>();
+        DeliveryAccess.put("first entry", "first entry");
         newbox.setDeliveryAccess(DeliveryAccess);
 
         dbreference.child("Boxes").child("Box58").setValue(newbox);
-
 
 
 

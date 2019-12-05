@@ -19,7 +19,8 @@ public class backend_User_Home extends AppCompatActivity implements BottomNaviga
 
         bottomNavigationView = findViewById(R.id.user_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
-        loadFragment(new UserHomeFragment());
+        bottomNavigationView.setSelectedItemId(R.id.user_navigation_home);
+
     }
 
 
@@ -42,23 +43,25 @@ public class backend_User_Home extends AppCompatActivity implements BottomNaviga
             case R.id.user_navigation_history:
                 fragment = new UserHistoryFragment();
                 loadFragment(fragment);
-                return true;
+                break;
 
             case R.id.user_navigation_home:
                 fragment = new UserHomeFragment();
                 loadFragment(fragment);
-                return true;
+                break;
 
             case R.id.user_navigation_guests:
                 fragment = new UserAddGuestsFragment();
                 loadFragment(fragment);
-                return true;
+                break;
 
             case R.id.user_navigation_settings:
                 fragment = new UserSettingsFragment();
                 loadFragment(fragment);
-                return true;
+                break;
         }
-        return false;
+        return true;
     }
 }
+
+//COMPLETED

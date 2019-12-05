@@ -70,28 +70,6 @@
         android:layout_below="@id/user_email_text"
         />
 
-    <TextView
-        android:id="@+id/user_address_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Address:"
-        android:layout_marginLeft="20dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_below="@id/user_email_display"
-        />
-
-    <EditText
-        android:id="@+id/user_address_display"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="Update your address"
-        android:layout_marginLeft="20dp"
-        android:layout_marginStart="20dp"
-        android:layout_below="@id/user_address_text"
-        android:textAppearance="@style/TextAppearance.AppCompat"
-        />
-
 
     <Button
         android:id="@+id/user_save_all_settings"

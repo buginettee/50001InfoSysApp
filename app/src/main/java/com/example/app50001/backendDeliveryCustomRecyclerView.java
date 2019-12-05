@@ -4,12 +4,14 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -71,7 +73,7 @@ public class backendDeliveryCustomRecyclerView extends RecyclerView.Adapter<back
         public void onClick(View v) {
 
         }
-          //  }
+        //  }
 
         public customViewHolder(@NonNull final View itemView) {
             super(itemView);
@@ -102,11 +104,18 @@ public class backendDeliveryCustomRecyclerView extends RecyclerView.Adapter<back
                             dialog.dismiss();
                         }
                     });
-                    builder.setNeutralButton("Open Box", new DialogInterface.OnClickListener() {
+                    builder.setPositiveButton("Open Box", new DialogInterface.OnClickListener() {
+                        @RequiresApi(api = Build.VERSION_CODES.O)
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            deliveryfrag.completeDelivery(titles.get(position).toString());
+                            deliveryfrag.completeDelivery(titles.get(position).toString(),details.get(titles.get(position)).get(0).toString());
 
+                        }
+                    });
+                    builder.setNeutralButton("Contact", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            deliveryfrag.callPerson(titles.get(position).toString());
                         }
                     });
                     AlertDialog alert = builder.create();
@@ -116,6 +125,7 @@ public class backendDeliveryCustomRecyclerView extends RecyclerView.Adapter<back
         }
 
 
-        }
     }
+}
+//COMPLETED
 

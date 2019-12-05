@@ -11,8 +11,11 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -23,15 +26,25 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
 public class UserHomeFragment extends Fragment {
 
     private DatabaseReference dbreference;
     private FirebaseAuth dbauth;
 
-    private TextView admin_access;
-    private TextView guest_access;
+    private ListView admin_access;
+    private ListView guest_access;
     private ImageButton forcelock;
     private ImageButton tempunlock;
+    private Button registernewbox;
+
+    private TextView insiviblecandy;
+
+    private List<String> adminaccess;
+    private List<String> guestaccess;
 
     private String uid;
 
@@ -55,34 +68,23 @@ public class UserHomeFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_user_home, container, false);
 
-        admin_access = (TextView) view.findViewById(R.id.admin_access_display);
-        guest_access = (TextView) view.findViewById(R.id.guest_access_display);
+        admin_access = (ListView) view.findViewById(R.id.admin_access_display);
+        guest_access = (ListView) view.findViewById(R.id.guest_access_display);
         forcelock = (ImageButton) view.findViewById(R.id.force_lock);
         tempunlock = (ImageButton) view.findViewById(R.id.temp_unlock);
+        registernewbox = (Button) view.findViewById(R.id.register_admin_box);
 
-        dbreference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                admin_access.setText("");
-                guest_access.setText("");
+        insiviblecandy = (TextView) view.findViewById(R.id.invisible_candy);
 
-                for(DataSnapshot snapshot : dataSnapshot.child("AdminOf").getChildren()){
-                    String admin = snapshot.getValue().toString();
-                    admin_access.append(admin);
-                    admin_access.append("\n");
-                }
-                for(DataSnapshot snapshot : dataSnapshot.child("GuestOf").getChildren()){
-                    String guest = snapshot.getValue().toString();
-                    guest_access.append(guest);
-                    guest_access.append("\n");
-                }
-            }
+        getaccesses();
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
+        ArrayAdapter<String> adminarray = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, adminaccess);
+        ArrayAdapter<String> guestarray = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, guestaccess);
 
-            }
-        });
+        admin_access.setAdapter(adminarray);
+        guest_access.setAdapter(guestarray);
+
+
 
         forcelock.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -104,6 +106,50 @@ public class UserHomeFragment extends Fragment {
             }
         });
 
+        registernewbox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                RegisterAdminBoxFragment registernow = new RegisterAdminBoxFragment();
+                FragmentManager manager = getFragmentManager();
+                FragmentTransaction trans = manager.beginTransaction().replace(R.id.user_fragment_container, registernow);
+                trans.commit();
+
+            }
+        });
+
+
+
         return view;
+    }
+
+    public void getaccesses(){
+        adminaccess = new ArrayList<>();
+        guestaccess = new ArrayList<>();
+
+        dbreference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                for(DataSnapshot snap : dataSnapshot.child("adminOf").getChildren()){
+                    String boxid = snap.getKey().toString();
+                    String address = snap.getValue().toString();
+
+                    adminaccess.add(boxid + "\n" + address);
+                    insiviblecandy.setText(boxid);
+                }
+
+                for(DataSnapshot snapsnap : dataSnapshot.child("guestOf").getChildren()){
+                    String boxid = snapsnap.getKey().toString();
+                    String address = snapsnap.getValue().toString();
+
+                    guestaccess.add(boxid + "\n" + address);
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
     }
 }

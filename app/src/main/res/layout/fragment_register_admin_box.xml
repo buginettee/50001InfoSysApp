@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary">
+
+    <TextView
+        android:id="@+id/register_box_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp"
+        android:textAlignment="center"
+        android:textSize="40sp"
+        android:text="Register New Box"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        />
+
+    <TextView
+        android:id="@+id/enter_contact"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Enter your contact number"
+        android:layout_marginLeft="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        />
+
+    <EditText
+        android:id="@+id/enter_contact_display"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Input contact number"
+        android:layout_centerHorizontal="true"
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        android:layout_below="@id/enter_contact"
+        />
+
+    <TextView
+        android:id="@+id/enter_addinfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Enter additional instructions for delivery"
+        android:layout_below="@id/enter_contact_display"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        />
+
+    <EditText
+        android:id="@+id/enter_addinfo_display"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Input if any"
+        android:layout_below="@+id/enter_addinfo"
+        android:layout_centerHorizontal="true"
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        />
+
+    <EditText
+        android:id="@+id/enter_address_display"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Input box address"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@id/enter_contact"
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        />
+    <TextView
+        android:id="@+id/enter_address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Enter box address"
+        android:layout_above="@id/enter_address_display"
+        android:layout_centerHorizontal="true"
+        />
+
+    <EditText
+        android:id="@+id/enter_boxid_display"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Input box ID"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@id/enter_address"
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        android:layout_marginBottom="10dp"
+        />
+
+    <TextView
+        android:id="@+id/enter_boxid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Enter box ID to register"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@id/enter_boxid_display"
+        />
+
+
+
+
+
+    <Button
+        android:id="@+id/save_register"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Register"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp"
+        android:layout_alignParentBottom="true"
+        />
+
+
+</RelativeLayout>

@@ -106,14 +106,14 @@ public class UserAddGuestsFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                for (DataSnapshot checkadmin : dataSnapshot.child("Profiles").child(currentUID).child("AdminOf").getChildren()){
+                for (DataSnapshot checkadmin : dataSnapshot.child("Profiles").child(currentUID).child("adminOf").getChildren()){
 
                     String adminbox = checkadmin.getKey().toString();
                     test_text.append(adminbox + "\n");
                     expandableListTitle.add(adminbox);
                     List<String> checkguests = new ArrayList<>();
 
-                    for(DataSnapshot boxguests : dataSnapshot.child("Boxes").child(adminbox).child("GuestAccess").getChildren()){
+                    for(DataSnapshot boxguests : dataSnapshot.child("Boxes").child(adminbox).child("guestAccess").getChildren()){
                         checkguests.add(boxguests.getKey().toString() + ": " + boxguests.getValue().toString());
                         test_text.append(boxguests + "\n");
                     }
@@ -122,7 +122,6 @@ public class UserAddGuestsFragment extends Fragment {
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                Log.d("Help", "help it's not working");
             }
         });
     }
@@ -139,5 +138,7 @@ public class UserAddGuestsFragment extends Fragment {
         expandableListView.setAdapter(expandableListAdapter);
     }
 }
+
+//COMPLETED
 
 

@@ -61,3 +61,5 @@ public class backendHistoryCustomRecyclerView extends RecyclerView.Adapter<backe
         }
     }
 }
+
+//COMPLETED

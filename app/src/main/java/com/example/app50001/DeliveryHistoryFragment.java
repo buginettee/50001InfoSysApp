@@ -85,7 +85,7 @@ public class DeliveryHistoryFragment extends Fragment {
         deliverydetails = new HashMap<String, List<String>>();
 
 
-        userreference.child("DeliveryHistoryOfProfile").addValueEventListener(new ValueEventListener() {
+        userreference.child("deliveryHistoryOfProfile").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
@@ -117,6 +117,7 @@ public class DeliveryHistoryFragment extends Fragment {
     }
 
 }
+//COMPLETED
 
 
 

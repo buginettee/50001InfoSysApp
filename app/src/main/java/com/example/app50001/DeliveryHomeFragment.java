@@ -1,6 +1,8 @@
 package com.example.app50001;
 
 import android.app.AlertDialog;
+import android.content.Intent;
+import android.net.Uri;
 import android.nfc.cardemulation.HostApduService;
 import android.os.Build;
 import android.os.Bundle;
@@ -42,6 +44,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+
+import javax.crypto.spec.DESedeKeySpec;
 
 public class DeliveryHomeFragment extends Fragment {
 
@@ -57,8 +62,11 @@ public class DeliveryHomeFragment extends Fragment {
 
     private TextView invisible;
     private String currentUID;
+    private String DUID;
+    private HashMap<String, Object> contact;
 
 
+    //for box and pure user
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -78,7 +86,7 @@ public class DeliveryHomeFragment extends Fragment {
     }
 
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
+        public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_delivery_home, container, false);
@@ -103,19 +111,25 @@ public class DeliveryHomeFragment extends Fragment {
     public void getdeliveries(){
         boxes = new ArrayList<String>();
         info = new HashMap<String, List<String>>();
+        contact = new HashMap<String, Object>();
 
         dbreference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                for(DataSnapshot datasnap : dataSnapshot.child("Profiles").child(currentUID).child("DeliveryOf").getChildren()) {
+                DUID = dataSnapshot.child("Profiles").child(currentUID).child("duid").getValue().toString();
+
+                for(DataSnapshot datasnap : dataSnapshot.child("Profiles").child(currentUID).child("deliveryOf").getChildren()) {
 
                     String boxid = datasnap.getKey().toString();
                     String boxaddress = datasnap.getValue().toString();
 
                     boxes.add(boxid);
 
-                    String boxinfo = dataSnapshot.child("Boxes").child(boxid).child("AdditionalInstructions").getValue().toString();
+                    String boxinfo = dataSnapshot.child("Boxes").child(boxid).child("additionalInstructions").getValue().toString();
+                    String phonenumber = dataSnapshot.child("Boxes").child(boxid).child("contact").getValue().toString();
+
+                    contact.put(boxid,phonenumber);
 
                     List<String> temp = new ArrayList<>();
                     temp.add(boxaddress);
@@ -132,16 +146,44 @@ public class DeliveryHomeFragment extends Fragment {
         });
     }
 
-    public void completeDelivery(String box){ //given the box that i have chose to complete delivery for,
-        //change box to unlocked, remove from deliveryof, remove from deliveryaccess of box
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public void completeDelivery(String box, String address){
 
-        dbreference.child("Boxes").child(box).child("ButtonState").setValue("Unlocked");
-        dbreference.child("Profiles").child(currentUID).child("DeliveryOf").removeValue();
-        dbreference.child("Boxes").child(box).child("DeliveryAccess").removeValue();
+        //change box state to unlocked
+        dbreference.child("Boxes").child(box).child("buttonState").setValue("Unlocked");
+
+        //remove box from deliveryOf
+        dbreference.child("Profiles").child(currentUID).child("deliveryOf").child(box).removeValue();
+
+        //remove user from box delivery access
+        dbreference.child("Boxes").child(box).child("deliveryAccess").child(DUID).removeValue();
+
+        //update delivery access
+        LocalDate date = java.time.LocalDate.now();
+        String datenow = date.toString();
+
+        HashMap<String, Object> deliveryaccessed = new HashMap<>();
+        deliveryaccessed.put(box, address);
+
+        Map<String, Object> temp = new HashMap<>();
+        temp.put(datenow, deliveryaccessed);
+
+        dbreference.child("Profiles").child(currentUID).child("deliveryHistoryOfProfile").updateChildren(temp);
 
     }
 
+    public void callPerson(String box){
+
+        String number = contact.get(box).toString();
+
+        Intent callIntent = new Intent(Intent.ACTION_DIAL);
+        callIntent.setData(Uri.parse("tel:"+number));
+        startActivity(callIntent);
+    }
+
 }
+
+//COMPLETED
 
 
 
