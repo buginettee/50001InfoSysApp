@@ -120,23 +120,27 @@ public class DeliveryHomeFragment extends Fragment {
                 DUID = dataSnapshot.child("Profiles").child(currentUID).child("duid").getValue().toString();
 
                 for(DataSnapshot datasnap : dataSnapshot.child("Profiles").child(currentUID).child("deliveryOf").getChildren()) {
+                    if(datasnap.getKey().toString() == "first entry"){
+                        continue;
+                    } else {
 
-                    String boxid = datasnap.getKey().toString();
-                    String boxaddress = datasnap.getValue().toString();
+                        String boxid = datasnap.getKey().toString();
+                        String boxaddress = datasnap.getValue().toString();
 
-                    boxes.add(boxid);
+                        boxes.add(boxid);
 
-                    String boxinfo = dataSnapshot.child("Boxes").child(boxid).child("additionalInstructions").getValue().toString();
-                    String phonenumber = dataSnapshot.child("Boxes").child(boxid).child("contact").getValue().toString();
+                        String boxinfo = dataSnapshot.child("Boxes").child(boxid).child("additionalInstructions").getValue().toString();
+                        String phonenumber = dataSnapshot.child("Boxes").child(boxid).child("contact").getValue().toString();
 
-                    contact.put(boxid,phonenumber);
+                        contact.put(boxid, phonenumber);
 
-                    List<String> temp = new ArrayList<>();
-                    temp.add(boxaddress);
-                    temp.add(boxinfo);
-                    info.put(boxid,temp);
+                        List<String> temp = new ArrayList<>();
+                        temp.add(boxaddress);
+                        temp.add(boxinfo);
+                        info.put(boxid, temp);
 
-                    invisible.setText(boxid);
+                        invisible.setText(boxid);
+                    }
                 }
             }
             @Override
@@ -168,7 +172,7 @@ public class DeliveryHomeFragment extends Fragment {
         Map<String, Object> temp = new HashMap<>();
         temp.put(datenow, deliveryaccessed);
 
-        dbreference.child("Profiles").child(currentUID).child("deliveryHistoryOfProfile").updateChildren(temp);
+        dbreference.child("Profiles").child(currentUID).child("deliveryHistoryOfProfile").child(datenow).updateChildren(temp);
 
     }
 
