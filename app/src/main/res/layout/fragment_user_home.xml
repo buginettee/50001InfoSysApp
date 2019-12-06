@@ -16,6 +16,7 @@
         android:textAlignment="center"
         android:textSize="40sp"
         android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="true"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         />
 
@@ -74,25 +75,13 @@
         android:layout_marginRight="20dp"
         />
 
-    <ImageButton
-        android:id="@+id/force_lock"
-        android:layout_width="100dp"
-        android:layout_height="140dp"
-        android:scaleType="fitXY"
-        app:srcCompat="@drawable/ic_password"
-        android:background="@android:color/transparent"
-        android:layout_marginLeft="70dp"
-        android:layout_marginStart="70dp"
-        android:layout_marginTop="30dp"
-        android:layout_below="@id/guest_access_display"
-        />
-
     <TextView
         android:id="@+id/text_force_lock"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/text_force_lock"
         android:layout_below="@id/force_lock"
+        android:layout_above="@+id/register_admin_box"
         android:layout_marginLeft="85dp"
         android:layout_marginStart="85dp"
         android:layout_marginTop="10dp"
@@ -101,19 +90,30 @@
 
     <ImageButton
         android:id="@+id/temp_unlock"
-        android:layout_width="80dp"
-        android:layout_height="140dp"
-        app:srcCompat="@drawable/ic_home_unlock"
-        android:scaleType="fitXY"
-        android:background="@android:color/transparent"
-        android:layout_marginRight="85dp"
-        android:layout_marginEnd="85dp"
-        android:layout_toRightOf="@+id/force_lock"
-        android:layout_marginLeft="80dp"
-        android:layout_marginStart="80dp"
-        android:layout_marginTop="30dp"
+        android:layout_width="40dp"
+        android:layout_height="70dp"
         android:layout_below="@id/guest_access_display"
-        />
+        android:layout_marginStart="80dp"
+        android:layout_marginLeft="80dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="85dp"
+        android:layout_marginRight="85dp"
+        android:layout_toRightOf="@+id/force_lock"
+        android:background="@android:color/transparent"
+        android:scaleType="fitXY"
+        app:srcCompat="@drawable/ic_home_unlock" />
+
+    <ImageButton
+        android:id="@+id/force_lock"
+        android:layout_width="50dp"
+        android:layout_height="70dp"
+        android:layout_below="@id/guest_access_display"
+        android:layout_marginStart="70dp"
+        android:layout_marginLeft="70dp"
+        android:layout_marginTop="30dp"
+        android:background="@android:color/transparent"
+        android:scaleType="fitXY"
+        app:srcCompat="@drawable/ic_password" />
 
     <TextView
         android:id="@+id/text_temp_unlock"
@@ -122,6 +122,7 @@
         android:text="@string/text_temp_unlock"
         android:layout_below="@id/temp_unlock"
         android:layout_alignLeft="@+id/temp_unlock"
+        android:layout_above="@+id/register_admin_box"
         android:layout_marginLeft="-20dp"
         android:layout_marginStart="-20dp"
         android:layout_marginTop="10dp"
@@ -132,8 +133,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Register New Box As Admin"
-        android:layout_below="@id/text_force_lock"
-        android:layout_marginTop="5dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="20dpdp"
         android:layout_centerHorizontal="true"
         />
 

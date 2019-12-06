@@ -22,10 +22,9 @@
     <ExpandableListView
         android:id="@+id/expandable_guest_list"
         android:layout_width="match_parent"
-        android:layout_height="350dp"
+        android:layout_height="match_parent"
         android:divider="@color/colorPrimary"
-        android:layout_marginLeft="20dp"
-        android:layout_marginStart="20dp"
+        android:layout_marginBottom="100dp"
         android:layout_below="@id/guest_access_title"
         />
 
